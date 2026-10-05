@@ -1,0 +1,15 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/guideline", "destination": "/index.html" },
+    { "source": "/guideline/:path*", "destination": "/index.html" },
+    { "source": "/principles-extended", "destination": "/index.html" },
+    { "source": "/principles-extended/:path*", "destination": "/index.html" },
+    { "source": "/resources", "destination": "/index.html" },
+    { "source": "/resources/:path*", "destination": "/index.html" },
+    { "source": "/en", "destination": "/index.html" },
+    { "source": "/en/:path*", "destination": "/index.html" },
+    { "source": "/pt", "destination": "/index.html" },
+    { "source": "/pt/:path*", "destination": "/index.html" }
+  ]
+}

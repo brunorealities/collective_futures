@@ -1,0 +1,4965 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --ink: #080808;
+  --cream: #f3eddd;
+  --cream-soft: #f8f3e7;
+  --green: #63cbb8;
+  --green-deep: #1f7e72;
+  --brown: #241b1f;
+  --white: #fffaf0;
+  --yellow: #f1e23e;
+  --line-dark: rgba(8, 8, 8, .18);
+  --line-light: rgba(255, 250, 240, .2);
+  --max: 1320px;
+  --pad: clamp(24px, 4.2vw, 72px);
+  --mono: 'IBM Plex Mono', monospace;
+  --body: 'Inter', system-ui, sans-serif;
+  --ease: cubic-bezier(.22, .72, .2, 1);
+
+  /* Canonical title design tokens */
+  --title-page-size: clamp(40px, 4.7vw, 68px);
+  --title-section-size: clamp(32px, 3.15vw, 50px);
+  --title-subsection-size: clamp(23px, 2.05vw, 34px);
+  --title-card-size: clamp(18px, 1.45vw, 23px);
+  --title-detail-size: 11px;
+  --title-subtitle-size: clamp(16px, 1.15vw, 19px);
+  --title-page-weight: 700;
+  --title-section-weight: 700;
+  --title-subsection-weight: 650;
+  --title-card-weight: 650;
+  --title-detail-weight: 700;
+  --title-page-line: .98;
+  --title-section-line: 1.02;
+  --title-subsection-line: 1.08;
+  --title-card-line: 1.12;
+  --title-detail-line: 1.2;
+  --title-page-tracking: -.045em;
+  --title-section-tracking: -.04em;
+  --title-subsection-tracking: -.03em;
+  --title-card-tracking: -.02em;
+  --title-detail-tracking: .06em;
+}
+
+* {
+  box-sizing: border-box
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--cream)
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden
+}
+
+a {
+  color: inherit;
+  text-decoration: none
+}
+
+button,
+input,
+textarea {
+  font: inherit
+}
+
+button {
+  color: inherit
+}
+
+img {
+  display: block;
+  max-width: 100%
+}
+
+.container {
+  width: min(var(--max), calc(100% - 2*var(--pad)));
+  margin-inline: auto
+}
+
+.page {
+  padding-top: 76px;
+  min-height: 100vh
+}
+
+.section {
+  position: relative;
+  padding: clamp(74px, 8vw, 118px) 0;
+  scroll-margin-top: 94px;
+  overflow: hidden
+}
+
+.theme-cream {
+  background: var(--cream);
+  color: var(--ink)
+}
+
+.theme-green {
+  background: var(--green);
+  color: var(--ink)
+}
+
+.theme-brown {
+  background: var(--brown);
+  color: var(--white)
+}
+
+.theme-black {
+  background: var(--ink);
+  color: var(--white)
+}
+
+.section+.section {
+  border-top: 1px solid rgba(0, 0, 0, .06)
+}
+
+.theme-black+.theme-black,
+.theme-brown+.theme-brown {
+  border-top-color: var(--line-light)
+}
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 1300;
+  height: 76px;
+  background: rgba(8, 8, 8, .88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+  color: var(--white)
+}
+
+.header-inner {
+  height: 100%;
+  width: min(var(--max), calc(100% - 2*var(--pad)));
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px
+}
+
+.brand {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: clamp(17px, 1.3vw, 22px);
+  letter-spacing: -.03em
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 22px
+}
+
+.nav-link,
+.language-link,
+.menu-toggle {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase
+}
+
+.nav-link {
+  opacity: .68;
+  position: relative;
+  padding: 8px 0;
+  transition: opacity .2s, color .2s
+}
+
+.nav-link:hover,
+.nav-link.active {
+  opacity: 1;
+  color: var(--green)
+}
+
+.language-link {
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: 999px;
+  padding: 8px 11px;
+  transition: .2s
+}
+
+.language-link:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--ink)
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: none;
+  color: inherit;
+  padding: 8px 0
+}
+
+.section-heading {
+  max-width: 820px;
+  margin-bottom: 28px
+}
+
+.section-title {
+  font-family: var(--mono);
+  font-size: var(--title-section-size);
+  font-weight: var(--title-section-weight);
+  line-height: var(--title-section-line);
+  letter-spacing: var(--title-section-tracking);
+  margin: 0;
+  text-transform: uppercase;
+  text-wrap: balance;
+  overflow-wrap: break-word
+}
+
+.section-subtitle {
+  font-family: var(--mono);
+  font-size: var(--title-subtitle-size);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -.015em;
+  margin: 14px 0 0;
+  max-width: 880px;
+  text-transform: uppercase
+}
+
+.prose {
+  display: grid;
+  gap: 20px;
+  min-width: 0
+}
+
+.prose p {
+  margin: 0;
+  font-size: clamp(16px, 1.06vw, 19px);
+  line-height: 1.72
+}
+
+.prose-large p {
+  font-size: clamp(17px, 1.18vw, 21px);
+  line-height: 1.72
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1px solid currentColor;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  transition: .25s var(--ease)
+}
+
+.button:hover {
+  transform: translateY(-2px)
+}
+
+.button-dark {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink)
+}
+
+.button-dark:hover {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--ink)
+}
+
+.button-light {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, .74);
+  background: transparent
+}
+
+.button-light:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--ink)
+}
+
+.section-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .62s var(--ease), transform .62s var(--ease)
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none
+}
+
+/* HERO */
+.hero-ascii {
+  background: var(--ink);
+  color: var(--white);
+  padding: 0
+}
+
+.ascii-stage {
+  position: relative;
+  min-height: min(100svh, 980px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #070707;
+  isolation: isolate
+}
+
+.ascii-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none
+}
+
+.ascii-base {
+  z-index: 0;
+  animation: asciiDrift 9s ease-in-out infinite alternate
+}
+
+.ascii-fx {
+  z-index: 1
+}
+
+@keyframes asciiDrift {
+  0% {
+    transform: scale(1.015) translate3d(-2px, -1px, 0)
+  }
+
+  50% {
+    transform: scale(1.018) translate3d(2px, 3px, 0)
+  }
+
+  100% {
+    transform: scale(1.015) translate3d(-1px, 2px, 0)
+  }
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 3;
+  width: min(650px, calc(100% - 2*var(--pad)));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 126px 0 72px;
+  pointer-events: none
+}
+
+.hero-official-logo {
+  width: min(580px, 80vw);
+  filter: invert(1);
+  opacity: .98
+}
+
+.hero-pt-logo {
+  width: min(560px, 80vw)
+}
+
+.hero-pt-subtitle {
+  font-family: 'Roc Grotesk', Inter, sans-serif;
+  font-size: clamp(18px, 1.45vw, 25px);
+  margin: 18px 0 0;
+  letter-spacing: .01em
+}
+
+.marquee {
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--white);
+  border-top: 1px solid rgba(255, 255, 255, .17);
+  border-bottom: 1px solid rgba(255, 255, 255, .17)
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite
+}
+
+.marquee span {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 13px 24px
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%)
+  }
+}
+
+/* HOME */
+.home-intro {
+  max-width: 1160px
+}
+
+.home-intro-text {
+  font-size: clamp(24px, 2.3vw, 39px);
+  line-height: 1.32;
+  letter-spacing: -.025em;
+  margin: 0;
+  text-wrap: pretty
+}
+
+.who-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .88fr) minmax(520px, 1.12fr);
+  gap: clamp(36px, 5vw, 80px);
+  align-items: center;
+  min-height: 580px
+}
+
+.who-copy {
+  min-width: 0
+}
+
+.who-copy .section-title {
+  font-size: var(--title-section-size);
+  max-width: 12ch
+}
+
+.who-text {
+  font-size: clamp(16px, 1.12vw, 20px);
+  line-height: 1.72;
+  margin: 0 0 26px;
+  max-width: 700px
+}
+
+.who-diagram {
+  margin: 0;
+  width: 100%;
+  justify-self: end
+}
+
+.who-diagram img {
+  width: 100%;
+  max-height: 720px;
+  object-fit: contain;
+  mix-blend-mode: screen
+}
+
+.values-intro {
+  font-size: clamp(17px, 1.2vw, 21px);
+  line-height: 1.62;
+  max-width: 960px;
+  margin: 0 0 34px
+}
+
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line-dark);
+  border-left: 1px solid var(--line-dark)
+}
+
+.value-card {
+  position: relative;
+  min-height: 310px;
+  padding: 24px;
+  border-right: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+  background: rgba(255, 255, 255, .08);
+  overflow: hidden
+}
+
+.value-index {
+  font-family: var(--mono);
+  font-size: 13px;
+  margin-bottom: 18px
+}
+
+.value-icon {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
+  opacity: .9
+}
+
+.value-title {
+  font-family: var(--mono);
+  font-size: var(--title-card-size);
+  font-weight: var(--title-card-weight);
+  line-height: var(--title-card-line);
+  letter-spacing: var(--title-card-tracking);
+  margin: 0 0 14px;
+  max-width: 72%
+}
+
+.value-copy {
+  font-size: 14.5px;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 76%
+}
+
+.declaration-inner {
+  display: flex;
+  justify-content: center
+}
+
+.declaration-text {
+  font-family: var(--mono);
+  font-size: clamp(27px, 3.1vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.04em;
+  text-align: center;
+  text-transform: uppercase;
+  text-wrap: balance;
+  margin: 0;
+  max-width: 1130px
+}
+
+.poster-carousel {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px
+}
+
+.carousel-arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--line-dark);
+  background: transparent;
+  font-size: 27px;
+  cursor: pointer;
+  transition: .2s
+}
+
+.carousel-arrow:hover {
+  background: var(--green)
+}
+
+.poster-viewport {
+  overflow: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory
+}
+
+.poster-viewport::-webkit-scrollbar {
+  display: none
+}
+
+.poster-track {
+  display: flex;
+  gap: 14px;
+  padding: 3px 2px 12px
+}
+
+.poster-card {
+  flex: 0 0 min(27vw, 320px);
+  aspect-ratio: 3/4;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  scroll-snap-align: start
+}
+
+.poster-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .14);
+  transition: transform .3s
+}
+
+.poster-card:hover img {
+  transform: translateY(-3px)
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, .42fr) minmax(0, 1.58fr);
+  gap: clamp(36px, 6vw, 88px);
+  align-items: start
+}
+
+.about-grid .section-title {
+  font-size: var(--title-section-size)
+}
+
+.about-grid .section-subtitle {
+  font-size: var(--title-subtitle-size);
+  max-width: 320px
+}
+
+.about-copy p {
+  font-size: clamp(14px, .98vw, 17px);
+  line-height: 1.72;
+  margin: 0
+}
+
+.about-copy .authors {
+  margin-top: 24px;
+  font-weight: 600
+}
+
+.about-copy a {
+  text-decoration: underline;
+  text-underline-offset: 3px
+}
+
+.seed-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, .8fr);
+  gap: clamp(34px, 6vw, 90px);
+  align-items: start
+}
+
+.seed-copy .section-title {
+  font-size: var(--title-section-size);
+  max-width: 14ch
+}
+
+.seed-text {
+  font-size: clamp(16px, 1.15vw, 20px);
+  line-height: 1.68;
+  max-width: 700px;
+  margin: 0
+}
+
+.seed-form {
+  display: grid;
+  gap: 18px
+}
+
+.seed-form label {
+  display: grid;
+  gap: 8px
+}
+
+.seed-form span {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600
+}
+
+.seed-form input,
+.seed-form textarea {
+  width: 100%;
+  border: 1px solid var(--line-dark);
+  background: rgba(255, 255, 255, .23);
+  padding: 14px 15px;
+  outline: none
+}
+
+.seed-form input:focus,
+.seed-form textarea:focus {
+  background: rgba(255, 255, 255, .4);
+  border-color: var(--ink)
+}
+
+.seed-form textarea {
+  resize: vertical;
+  min-height: 170px
+}
+
+.seed-form .button {
+  width: 100%
+}
+
+/* GUIDELINE */
+.guideline-shell {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  background: var(--cream)
+}
+
+.guideline-content {
+  min-width: 0
+}
+
+.guideline-floating-nav {
+  position: sticky;
+  top: 94px;
+  align-self: start;
+  height: calc(100vh - 112px);
+  z-index: 1100;
+  margin: 18px 10px 18px 14px;
+  padding: 16px 14px;
+  background: rgba(20, 20, 20, .78);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, .14);
+  color: var(--white);
+  overflow: auto
+}
+
+.floating-toc-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .06em;
+  margin-bottom: 12px;
+  opacity: .66
+}
+
+.floating-toc-links {
+  display: flex;
+  flex-direction: column
+}
+
+.floating-toc-link {
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.35;
+  text-transform: uppercase;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+  opacity: .58;
+  transition: .2s
+}
+
+.floating-toc-link:hover,
+.floating-toc-link.active {
+  opacity: 1;
+  color: var(--green);
+  padding-left: 5px
+}
+
+.guideline-content .container {
+  width: min(1120px, calc(100% - 2*var(--pad)))
+}
+
+.guideline-cover {
+  min-height: 72vh;
+  display: grid;
+  grid-template-columns: minmax(280px, .8fr) minmax(0, 1.2fr);
+  gap: 60px;
+  align-items: center
+}
+
+.guideline-logo {
+  max-width: 430px
+}
+
+.guideline-logo-image {
+  width: 100%;
+  filter: invert(1)
+}
+
+.guideline-logo-pt-subtitle {
+  font-family: 'Roc Grotesk', Inter, sans-serif;
+  font-size: 18px;
+  margin-top: 12px
+}
+
+.guideline-cover-title {
+  font-family: var(--mono);
+  font-size: clamp(48px, 5.7vw, 88px);
+  line-height: .88;
+  letter-spacing: -.06em;
+  text-transform: uppercase;
+  margin: 0;
+  max-width: 10ch
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 340px) minmax(0, 1fr);
+  gap: 42px 72px;
+  align-items: start
+}
+
+.editorial-grid .section-title {
+  font-size: var(--title-section-size);
+  max-width: 13ch
+}
+
+.editorial-spacer {
+  min-height: 1px
+}
+
+.overview-values {
+  border-top: 1px solid var(--line-dark);
+  padding-top: 20px
+}
+
+.overview-values-intro {
+  font-weight: 600;
+  margin: 0 0 12px
+}
+
+.overview-values-list {
+  padding-left: 20px;
+  margin: 0;
+  display: grid;
+  gap: 8px
+}
+
+.overview-values-list li {
+  font-size: 15px;
+  line-height: 1.6
+}
+
+.inline-declaration {
+  font-family: var(--mono);
+  font-size: clamp(19px, 1.8vw, 28px);
+  line-height: 1.35;
+  text-transform: uppercase;
+  border-left: 3px solid var(--green);
+  padding-left: 18px;
+  margin: 34px 0 0
+}
+
+.diagram-section .section-heading {
+  margin-bottom: 18px
+}
+
+.guideline-diagram {
+  margin: 0
+}
+
+.guideline-diagram img {
+  width: 100%;
+  max-height: 860px;
+  object-fit: contain
+}
+
+.theme-black .guideline-diagram img {
+  mix-blend-mode: screen
+}
+
+.short-principles {
+  display: grid;
+  gap: 32px;
+  margin-top: 24px
+}
+
+.principle-group {
+  border-top: 1px solid var(--line-dark);
+  padding-top: 17px
+}
+
+.principle-group-title {
+  font-family: var(--mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  margin: 0 0 15px
+}
+
+.principle-group-items {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px
+}
+
+.principle-short {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px
+}
+
+.principle-short-number {
+  font-family: var(--mono);
+  font-size: 13px
+}
+
+.principle-short h4 {
+  font-family: var(--mono);
+  font-size: 18px;
+  line-height: 1.16;
+  margin: 0 0 8px
+}
+
+.principle-short p {
+  font-size: 14.5px;
+  line-height: 1.55;
+  margin: 0
+}
+
+.manifesto-section {
+  text-align: center
+}
+
+.manifesto-section .section-heading {
+  margin: 0 auto 38px
+}
+
+.manifesto-section .section-title {
+  max-width: 13ch;
+  margin-inline: auto
+}
+
+.manifesto-text {
+  max-width: 980px;
+  margin: auto;
+  display: grid;
+  gap: 20px
+}
+
+.manifesto-text p {
+  font-size: clamp(16px, 1.12vw, 19px);
+  line-height: 1.72;
+  margin: 0
+}
+
+.manifesto-text strong {
+  font-weight: 750
+}
+
+.resources-brief {
+  display: grid;
+  grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
+  gap: 42px 72px;
+  align-items: start
+}
+
+.resources-brief .section-heading {
+  margin: 0
+}
+
+.resources-brief-text {
+  font-size: clamp(20px, 1.8vw, 29px);
+  line-height: 1.45;
+  margin: 0 0 24px
+}
+
+.resources-brief .button {
+  grid-column: 2;
+  width: max-content
+}
+
+.conclusion-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 44px;
+  align-items: start;
+  text-align: left;
+}
+
+.conclusion-grid .section-heading {
+  margin: 0 0 12px;
+  text-align: left;
+}
+
+.conclusion-grid .section-title {
+  font-size: var(--title-section-size);
+  max-width: none !important;
+  margin-inline: 0;
+  text-align: left;
+}
+
+.conclusion-copy {
+  max-width: 1080px;
+  margin: 0;
+}
+
+.final-message {
+  grid-column: 1;
+  border-top: 1px solid var(--line-dark);
+  padding-top: 24px;
+  margin: 24px auto 0;
+  max-width: 1080px;
+  width: 100%;
+}
+
+.final-message-title {
+  font-family: var(--mono);
+  font-size: var(--title-subsection-size);
+  font-weight: var(--title-subsection-weight);
+  line-height: var(--title-subsection-line);
+  letter-spacing: var(--title-subsection-tracking);
+  margin: 0 0 18px
+}
+
+/* PRINCIPLES */
+.principles-hero {
+  max-width: 900px
+}
+
+.principles-hero .section-title {
+  font-size: var(--title-page-size)
+}
+
+.extended-principles {
+  border-top: 1px solid var(--line-dark)
+}
+
+.extended-principle {
+  border-bottom: 1px solid var(--line-dark)
+}
+
+.extended-head {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 44px 170px minmax(0, 1fr) 28px;
+  gap: 18px;
+  align-items: center;
+  background: none;
+  border: 0;
+  padding: 20px 0;
+  text-align: left;
+  cursor: pointer
+}
+
+.extended-number,
+.extended-value {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase
+}
+
+.extended-value {
+  opacity: .62
+}
+
+.extended-head strong {
+  font-family: var(--mono);
+  font-size: var(--title-subsection-size);
+  line-height: 1.05
+}
+
+.extended-plus {
+  font-size: 26px
+}
+
+.extended-body {
+  display: none;
+  padding: 0 0 34px 232px
+}
+
+.extended-principle.open .extended-body {
+  display: block
+}
+
+.extended-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, .9fr);
+  gap: 34px
+}
+
+.extended-copy h4 {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 0 0 8px
+}
+
+.extended-copy p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0 0 22px
+}
+
+.extended-image img {
+  width: 100%;
+  border-radius: 8px
+}
+
+.comparative-image img {
+  width: 100%;
+  object-fit: contain
+}
+
+/* RESOURCES */
+.resources-hero {
+  min-height: auto;
+  display: grid;
+  align-items: center
+}
+
+.resources-hero .section-title {
+  font-size: var(--title-page-size)
+}
+
+.resources-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px
+}
+
+.resources-toc a {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  border: 1px solid var(--line-light);
+  padding: 9px 11px;
+  opacity: .76
+}
+
+.resources-toc a:hover {
+  background: var(--green);
+  color: var(--ink);
+  opacity: 1
+}
+
+.resources-intro {
+  font-size: clamp(16px, 1.1vw, 19px);
+  line-height: 1.68;
+  max-width: 900px;
+  margin: 0 0 28px
+}
+
+.rules-shell {
+  display: grid;
+  gap: 22px
+}
+
+.rules-tools {
+  display: flex
+}
+
+.rules-search {
+  width: min(560px, 100%);
+  padding: 13px 14px;
+  background: rgba(255, 255, 255, .2);
+  border: 1px solid var(--line-dark);
+  outline: none
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line-dark);
+  border-left: 1px solid var(--line-dark)
+}
+
+.rule-card {
+  padding: 23px;
+  border-right: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+  min-height: 260px
+}
+
+.rule-number,
+.safeguard-number {
+  font-family: var(--mono);
+  font-size: 12px;
+  opacity: .65
+}
+
+.rule-card h3,
+.safeguard-card h3,
+.governance-card h3 {
+  font-family: var(--mono);
+  font-size: var(--title-card-size);
+  font-weight: var(--title-card-weight);
+  line-height: var(--title-card-line);
+  letter-spacing: var(--title-card-tracking);
+  margin: 18px 0 16px
+}
+
+.rule-body {
+  display: grid;
+  gap: 11px
+}
+
+.rule-line {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0
+}
+
+.rule-line strong {
+  font-family: var(--mono);
+  font-size: 12px
+}
+
+.safeguards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px
+}
+
+.safeguard-card {
+  border: 1px solid var(--line-dark);
+  padding: 23px
+}
+
+.safeguard-card p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0
+}
+
+.governance-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px
+}
+
+.governance-card {
+  border: 1px solid var(--line-light);
+  padding: 22px;
+  color: var(--white)
+}
+
+.governance-card p {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0
+}
+
+.governance-icon {
+  width: 54px;
+  height: 54px;
+  margin-bottom: 20px
+}
+
+.governance-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round
+}
+
+.license-card {
+  border: 1px solid var(--line-dark);
+  padding: 30px
+}
+
+.license-text {
+  font-size: clamp(19px, 1.7vw, 27px);
+  line-height: 1.5;
+  margin: 0;
+  font-style: italic
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .9);
+  z-index: 3000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 30px
+}
+
+.lightbox.open {
+  display: flex
+}
+
+.lightbox img {
+  max-width: 96vw;
+  max-height: 94vh;
+  object-fit: contain;
+  cursor: zoom-out;
+  border-radius: 6px
+}
+
+.diagram-art {
+  cursor: pointer;
+  transition: transform .25s var(--ease), filter .25s var(--ease);
+}
+
+.diagram-art:hover {
+  transform: scale(1.008);
+  filter: brightness(1.04);
+}
+
+.lightbox-close {
+  position: absolute;
+  right: 22px;
+  top: 18px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 28px;
+  cursor: pointer
+}
+
+/* FOOTER */
+.site-footer {
+  background: var(--ink);
+  color: var(--white)
+}
+
+.footer-top,
+.footer-bottom {
+  width: min(var(--max), calc(100% - 2*var(--pad)));
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 34px;
+  padding: 34px 0
+}
+
+.footer-top {
+  border-bottom: 1px solid var(--line-light)
+}
+
+.footer-copy {
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 850px
+}
+
+/* Unearthodox logo beside the attribution requested by Sudha. */
+.unearthodox-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: .45em;
+  vertical-align: baseline;
+  color: inherit
+}
+
+.unearthodox-credit-logo {
+  height: .9em;
+  width: auto;
+  flex: none
+}
+
+.footer-license {
+  width: 112px;
+  height: auto;
+  filter: invert(1)
+}
+
+.footer-logos {
+  display: flex;
+  align-items: center;
+  gap: 25px
+}
+
+.partner-logo {
+  max-width: 145px;
+  max-height: 48px;
+  object-fit: contain;
+  filter: brightness(0) invert(1)
+}
+
+.footer-contact {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap
+}
+
+.footer-contact-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  opacity: .7
+}
+
+.footer-contact-link:hover {
+  color: var(--green);
+  opacity: 1
+}
+
+@media(max-width:1180px) {
+  .who-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(420px, .95fr);
+    gap: 34px
+  }
+
+  .value-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  }
+
+  .guideline-shell {
+    grid-template-columns: 190px minmax(0, 1fr)
+  }
+
+  .editorial-grid {
+    grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+    gap: 34px 52px
+  }
+
+  .extended-body {
+    padding-left: 0
+  }
+
+  .extended-grid {
+    grid-template-columns: 1fr
+  }
+
+  .governance-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  }
+}
+
+@media(max-width:900px) {
+  :root {
+    --pad: 24px
+  }
+
+  .menu-toggle {
+    display: block
+  }
+
+  .main-nav {
+    display: none;
+    position: fixed;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: rgba(8, 8, 8, .97);
+    padding: 18px var(--pad) 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-top: 1px solid rgba(255, 255, 255, .12)
+  }
+
+  .site-header.menu-open .main-nav {
+    display: flex
+  }
+
+  .who-grid,
+  .about-grid,
+  .seed-grid,
+  .guideline-cover,
+  .editorial-grid,
+  .resources-brief,
+  .conclusion-grid {
+    grid-template-columns: 1fr
+  }
+
+  .who-diagram {
+    width: min(100%, 760px);
+    justify-self: center
+  }
+
+  .guideline-shell {
+    display: block
+  }
+
+  .guideline-floating-nav {
+    position: sticky;
+    top: 76px;
+    height: auto;
+    margin: 0;
+    padding: 9px var(--pad);
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
+    overflow-x: auto;
+    white-space: nowrap
+  }
+
+  .floating-toc-title {
+    display: none
+  }
+
+  .floating-toc-links {
+    flex-direction: row;
+    gap: 18px
+  }
+
+  .floating-toc-link {
+    border: 0;
+    padding: 6px 0
+  }
+
+  .guideline-content .container {
+    width: min(var(--max), calc(100% - 2*var(--pad)))
+  }
+
+  .guideline-cover {
+    min-height: 58vh
+  }
+
+  .guideline-logo {
+    max-width: 390px
+  }
+
+  .editorial-spacer {
+    display: none
+  }
+
+  .resources-brief .button,
+  .final-message {
+    grid-column: auto
+  }
+
+  .principle-group-items {
+    grid-template-columns: 1fr
+  }
+
+  .extended-head {
+    grid-template-columns: 36px 1fr 28px
+  }
+
+  .extended-value {
+    display: none
+  }
+
+  .rules-grid,
+  .safeguards-grid {
+    grid-template-columns: 1fr
+  }
+
+  .governance-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  }
+
+  .poster-card {
+    flex-basis: min(46vw, 300px)
+  }
+}
+
+@media(max-width:620px) {
+  :root {
+    --pad: 18px
+  }
+
+  .section {
+    padding: 62px 0
+  }
+
+  .hero-overlay {
+    padding-top: 100px
+  }
+
+  .hero-official-logo {
+    width: min(470px, 88vw)
+  }
+
+  .home-intro-text {
+    font-size: 22px
+  }
+
+  .section-title {
+    font-size: var(--title-section-size)
+  }
+
+  .who-copy .section-title {
+    font-size: var(--title-section-size)
+  }
+
+  .value-grid,
+  .governance-grid {
+    grid-template-columns: 1fr
+  }
+
+  .value-card {
+    min-height: 275px
+  }
+
+  .poster-carousel {
+    grid-template-columns: 1fr
+  }
+
+  .carousel-arrow {
+    display: none
+  }
+
+  .poster-card {
+    flex-basis: 76vw
+  }
+
+  .declaration-text {
+    font-size: 26px
+  }
+
+  .extended-head strong {
+    font-size: var(--title-subsection-size)
+  }
+
+  .extended-head {
+    padding: 16px 0
+  }
+
+  .footer-top,
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start
+  }
+
+  .footer-contact {
+    flex-direction: column;
+    gap: 9px
+  }
+
+  .resources-hero .section-title {
+    font-size: var(--title-page-size)
+  }
+
+  .ascii-stage {
+    min-height: 84svh
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  * {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none
+  }
+}
+
+
+/* Principles: requested minimal cover + 3x2 table of contents */
+.principles-minimal-header {
+  background: rgba(31, 25, 27, .96);
+  border-bottom: 0
+}
+
+.principles-minimal-inner {
+  justify-content: space-between
+}
+
+.principles-minimal-header .language-link {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--green);
+  text-transform: uppercase
+}
+
+.principles-logo-cover {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  background: #211b1d;
+  border-top: 0
+}
+
+.principles-logo-cover::after {
+  content: "";
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  bottom: -118px;
+  height: 220px;
+  border: 2px solid var(--green);
+  border-color: var(--green) transparent transparent transparent;
+  border-radius: 50% 50% 0 0/100% 100% 0 0;
+  pointer-events: none
+}
+
+.principles-logo-cover-inner {
+  min-height: calc(100svh - 76px);
+  display: grid;
+  place-items: center;
+  padding: 80px 0 112px
+}
+
+.principles-logo-cover .guideline-logo {
+  max-width: 420px;
+  margin: 0 auto
+}
+
+.principles-logo-cover .guideline-logo-image {
+  filter: invert(1)
+}
+
+.principles-logo-cover .guideline-logo-pt-image {
+  filter: invert(1)
+}
+
+.principles-logo-cover .guideline-logo-pt-subtitle {
+  color: var(--white);
+  text-align: center
+}
+
+.principles-toc-section {
+  background: #211b1d;
+  color: var(--green);
+  padding: 18px 0 44px
+}
+
+.principles-toc-inner {
+  width: min(1320px, calc(100% - 2*var(--pad)))
+}
+
+.principles-toc-kicker {
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 20px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  color: var(--green)
+}
+
+.principles-toc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2px;
+  background: var(--green);
+  border: 2px solid var(--green);
+  border-radius: 105px;
+  overflow: hidden
+}
+
+.principles-toc-card {
+  min-height: 350px;
+  background: #211b1d;
+  padding: 66px 54px 54px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-start
+}
+
+.principles-toc-card-title {
+  font-family: var(--mono);
+  font-size: var(--title-card-size);
+  line-height: 1.18;
+  margin: 8px 0 42px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 8px;
+  color: var(--green)
+}
+
+.principles-toc-card-links {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  align-items: center
+}
+
+.principles-toc-card-link {
+  font-family: var(--mono);
+  font-size: clamp(15px, 1.1vw, 20px);
+  line-height: 1.45;
+  text-transform: uppercase;
+  color: var(--green);
+  transition: opacity .2s ease
+}
+
+.principles-toc-card-link:hover {
+  opacity: .58
+}
+
+/* Home: requested slow footer ticker */
+.home-footer-ticker {
+  overflow: hidden;
+  background: var(--green);
+  color: var(--ink);
+  border-top: 1px solid rgba(0, 0, 0, .22);
+  border-bottom: 1px solid rgba(0, 0, 0, .22)
+}
+
+.home-footer-ticker-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: home-footer-ticker-scroll 86s linear infinite;
+  will-change: transform
+}
+
+.home-footer-ticker-item {
+  flex: 0 0 auto;
+  font-family: var(--mono);
+  font-size: clamp(38px, 4vw, 68px);
+  line-height: 1;
+  letter-spacing: -.04em;
+  white-space: nowrap;
+  padding: 28px 48px
+}
+
+.home-footer-ticker-link {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px
+}
+
+@keyframes home-footer-ticker-scroll {
+  from {
+    transform: translateX(0)
+  }
+
+  to {
+    transform: translateX(-50%)
+  }
+}
+
+@media(max-width:980px) {
+  .principles-toc-grid {
+    grid-template-columns: 1fr;
+    border-radius: 64px
+  }
+
+  .principles-toc-card {
+    min-height: 260px;
+    padding: 44px 28px 38px
+  }
+
+  .principles-toc-card-title {
+    margin-bottom: 30px
+  }
+
+  .principles-logo-cover .guideline-logo {
+    max-width: 360px
+  }
+}
+
+@media(max-width:620px) {
+  .principles-logo-cover-inner {
+    min-height: 72svh;
+    padding: 64px 0 96px
+  }
+
+  .principles-logo-cover::after {
+    bottom: -82px;
+    height: 150px
+  }
+
+  .principles-toc-kicker {
+    font-size: 15px
+  }
+
+  .principles-toc-grid {
+    border-radius: 46px
+  }
+
+  .principles-toc-card {
+    min-height: 230px
+  }
+
+  .home-footer-ticker-item {
+    font-size: 30px;
+    padding: 22px 32px
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .home-footer-ticker-track {
+    animation-duration: 180s
+  }
+}
+
+/* v5 requested refinements: TOC title links + editorial paragraph scale */
+.principles-toc-title-link {
+  color: inherit;
+  text-decoration: inherit;
+  text-decoration-thickness: inherit;
+  text-underline-offset: inherit;
+  transition: opacity .2s ease;
+}
+
+.principles-toc-title-link:hover {
+  opacity: .58
+}
+
+.principles-toc-card-subtitle {
+  font-family: var(--mono);
+  font-size: clamp(15px, 1.1vw, 20px);
+  line-height: 1.45;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+/* More restrained body typography for long-reading sections */
+.home-intro-text {
+  font-size: clamp(19px, 1.48vw, 28px);
+  line-height: 1.46;
+  letter-spacing: -.018em;
+  max-width: 1080px;
+}
+
+.who-text {
+  font-size: clamp(14px, .86vw, 16px);
+  line-height: 1.68;
+}
+
+.values-intro {
+  font-size: clamp(14px, .9vw, 16.5px);
+  line-height: 1.66;
+}
+
+.prose p {
+  font-size: clamp(14px, .86vw, 16px);
+  line-height: 1.68;
+}
+
+.prose-large p {
+  font-size: clamp(14.5px, .9vw, 16.5px);
+  line-height: 1.7;
+}
+
+.overview-values-intro,
+.overview-values-list li {
+  font-size: clamp(13.5px, .82vw, 15.5px);
+  line-height: 1.62;
+}
+
+.inline-declaration {
+  font-size: clamp(17px, 1.28vw, 22px);
+  line-height: 1.42;
+}
+
+.about-copy p {
+  font-size: clamp(13.5px, .8vw, 15.5px);
+  line-height: 1.68;
+}
+
+.manifesto-text {
+  max-width: 1020px;
+  gap: 17px;
+}
+
+.manifesto-text p {
+  font-size: clamp(14px, .86vw, 16px);
+  line-height: 1.66;
+}
+
+.resources-brief-text {
+  font-size: clamp(15px, .96vw, 18px);
+  line-height: 1.62;
+}
+
+.resources-intro {
+  font-size: clamp(14px, .88vw, 16px);
+  line-height: 1.66;
+}
+
+.seed-text {
+  font-size: clamp(14.5px, .9vw, 17px);
+  line-height: 1.66;
+}
+
+@media(max-width:620px) {
+  .home-intro-text {
+    font-size: 19px
+  }
+
+  .who-text,
+  .prose p,
+  .prose-large p,
+  .manifesto-text p,
+  .resources-intro,
+  .seed-text {
+    font-size: 15px
+  }
+}
+
+
+/* v7: PT diagram parity + values legibility + comparative table */
+.theme-green .value-grid {
+  gap: 0
+}
+
+.value-card {
+  min-height: 360px;
+  padding: 28px;
+  background: rgba(255, 255, 255, .1)
+}
+
+.value-icon {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  top: auto;
+  display: block;
+  width: 136px;
+  height: 136px;
+  margin: 0 0 22px;
+  opacity: 1;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, .08))
+}
+
+.value-title {
+  max-width: 100%;
+  font-size: var(--title-card-size);
+  margin: 0 0 14px
+}
+
+.value-copy {
+  max-width: 100%;
+  font-size: 15px;
+  line-height: 1.58
+}
+
+.theme-green .value-card {
+  background: rgba(255, 255, 255, .14)
+}
+
+.theme-green .value-title,
+.theme-green .value-copy,
+.theme-green .value-index {
+  color: #0f0f0f
+}
+
+.theme-green .value-index {
+  opacity: .7
+}
+
+/* make PT diagram sections match EN footprint more closely */
+html[lang="pt-BR"] .who-diagram img,
+html[lang="pt-BR"] .guideline-diagram img {
+  max-width: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: center
+}
+
+html[lang="pt-BR"] .who-grid {
+  grid-template-columns: minmax(0, .92fr) minmax(520px, 1.08fr)
+}
+
+.comparative-table {
+  margin-top: 22px
+}
+
+.comparative-table-scroll {
+  overflow: auto;
+  border: 1px solid rgba(0, 0, 0, .14);
+  border-radius: 0;
+  background: transparent
+}
+
+.comparative-table-element {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.42;
+  background: transparent
+}
+
+.comparative-table-element th,
+.comparative-table-element td {
+  padding: 18px 16px;
+  vertical-align: top;
+  border: 1px solid rgba(0, 0, 0, .12);
+  text-align: left;
+  background: transparent
+}
+
+.comparative-table-element thead th {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  background: #2fb8d2;
+  color: #0f0f0f
+}
+
+.comparative-table-element td:first-child,
+.comparative-table-element th:first-child {
+  width: 48px;
+  text-align: center
+}
+
+.comparative-table-element td strong {
+  font-weight: 750
+}
+
+.comparative-table-element tbody td {
+  font-size: 14px;
+  line-height: 1.48
+}
+
+#comparative .section-title {
+  font-size: var(--title-section-size);
+  height: auto;
+}
+}
+
+
+/* v9: punctual refinements requested for Home + Guideline */
+/* Home declaration: smaller, calmer emphasis */
+.page-home .declaration-text {
+  font-size: clamp(22px, 2.25vw, 38px);
+  line-height: 1.14;
+  max-width: 1080px;
+}
+
+/* Keep Pollinate heading on one line on desktop */
+.page-home #posters .section-heading {
+  max-width: none
+}
+
+.page-home #posters .section-title {
+  white-space: nowrap;
+  max-width: none;
+  font-size: var(--title-section-size);
+}
+
+/* Footer ticker: slightly smaller and slower */
+.home-footer-ticker-track {
+  animation-duration: 108s
+}
+
+.home-footer-ticker-item {
+  font-size: clamp(34px, 3.55vw, 60px);
+  padding: 25px 44px;
+}
+
+/* Guideline: editorial sections centered as a single reading column */
+.guideline-page #overview .editorial-grid,
+.guideline-page #who .editorial-grid {
+  grid-template-columns: 1fr;
+  width: min(1080px, calc(100% - 2*var(--pad)));
+  margin: 0 auto;
+  gap: 24px;
+}
+
+.guideline-page #overview .section-heading,
+.guideline-page #who .section-heading {
+  max-width: none;
+  margin: 0;
+}
+
+.guideline-page #overview .section-title,
+.guideline-page #who .section-title {
+  max-width: none;
+  font-size: var(--title-section-size);
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+
+.guideline-page #overview .prose,
+.guideline-page #who .prose {
+  width: 100%;
+  max-width: none;
+}
+
+.guideline-page #overview .editorial-spacer {
+  display: none
+}
+
+.guideline-page #overview .overview-values {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.guideline-page #who .inline-declaration {
+  font-size: clamp(13.5px, .94vw, 16px);
+  line-height: 1.48;
+  text-transform: none;
+  border-left: 0;
+  border-radius: 48px;
+  background: var(--green) !important;
+  color: #080808 !important;
+  padding: 24px 34px;
+  margin: 34px 0 0;
+  text-align: center;
+  font-weight: 400;
+}
+
+/* Diagram heading hierarchy: large title + small centered subtitle */
+.guideline-page #diagram .diagram-section .section-heading {
+  max-width: none;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+
+.guideline-page #diagram .section-title {
+  max-width: none;
+  color: var(--green);
+  font-size: var(--title-section-size);
+  line-height: 1;
+  letter-spacing: -.04em;
+  white-space: nowrap;
+}
+
+.guideline-page #diagram .section-subtitle {
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: var(--title-subtitle-size);
+  line-height: 1.2;
+  margin: 18px 0 0;
+  text-transform: uppercase;
+}
+
+/* Guideline About should mirror the existing original About styling */
+.guideline-page #about .about-grid {
+  align-items: start
+}
+
+.guideline-page #about .section-title {
+  font-size: var(--title-section-size);
+  padding: 20px 30px
+}
+
+.guideline-page #overview .editorial-grid,
+.guideline-page #who .editorial-grid {
+  gap: 18px
+}
+
+.guideline-page #who .inline-declaration {
+  padding: 20px 22px;
+  border-radius: 30px
+}
+}
+
+/* v10 final polish: primary PT, unified typography, compact hero, rounded UI */
+:root {
+  --orange-red: #e64926;
+  --title-size: var(--title-section-size);
+  --title-weight: var(--title-section-weight);
+  --title-line: var(--title-section-line);
+  --title-tracking: var(--title-section-tracking);
+}
+
+.theme-orange {
+  background: var(--orange-red);
+  color: var(--ink)
+}
+
+.site-header {
+  background: #080808;
+  backdrop-filter: none
+}
+
+.nav-link {
+  transition: opacity .18s ease, color .18s ease
+}
+
+.button {
+  border-radius: 14px;
+  min-height: 50px;
+  padding-inline: 22px
+}
+
+.seed-form input,
+.seed-form textarea {
+  border-radius: 14px
+}
+
+.page-home #who .button,
+.page-home #values .button {
+  min-height: 56px;
+  padding-inline: 28px;
+  font-size: 12px;
+  border-radius: 16px
+}
+
+.page-home #values .button-dark:hover,
+.page-home #who .button-light:hover {
+  background: var(--brown);
+  border-color: var(--brown);
+  color: var(--white)
+}
+
+.seed-form .button-dark {
+  background: var(--brown);
+  border-color: var(--brown);
+  color: var(--white)
+}
+
+.seed-form .button-dark:hover {
+  background: #3a2a31;
+  border-color: #3a2a31;
+  color: var(--white)
+}
+
+/* One title system across all pages */
+.page-home .section-title,
+.guideline-page .section-title,
+.principles-page .section-title,
+.resources-page .section-title {
+  font-family: var(--mono);
+  font-size: var(--title-size);
+  font-weight: var(--title-weight);
+  line-height: .98;
+  letter-spacing: -.04em;
+}
+
+.page-home .who-copy .section-title,
+.page-home .about-grid .section-title,
+.page-home .seed-copy .section-title,
+.guideline-page #overview .section-title,
+.guideline-page #who .section-title,
+.guideline-page #about .section-title,
+.guideline-page #conclusion .section-title,
+.resources-page .resources-hero .section-title {
+  font-size: var(--title-page-size);
+  font-weight: var(--title-weight);
+  line-height: .98;
+}
+
+/* Hero occupies exactly one screen including the fixed header */
+.ascii-stage {
+  height: calc(100svh - 76px);
+  min-height: 0;
+  max-height: none
+}
+
+.hero-overlay {
+  padding: 72px 0 44px
+}
+
+.hero-official-logo {
+  width: min(470px, 68vw)
+}
+
+.hero-pt-logo {
+  width: min(450px, 68vw)
+}
+
+.hero-pt-subtitle {
+  font-size: clamp(16px, 1.2vw, 22px);
+  margin-top: 14px
+}
+
+/* Home intro: centered and tighter */
+.page-home #intro {
+  padding: 56px 0
+}
+
+.home-intro {
+  max-width: 1040px;
+  text-align: center
+}
+
+.home-intro-text {
+  margin-inline: auto;
+  font-size: clamp(18px, 1.35vw, 25px);
+  line-height: 1.48
+}
+
+.home-intro-text strong {
+  font-weight: 800
+}
+
+/* Values hover: green/brown interaction with subtle icon movement */
+.value-card {
+  transition: background .34s var(--ease), color .34s var(--ease), transform .34s var(--ease)
+}
+
+.value-icon {
+  transition: transform .38s var(--ease), filter .38s var(--ease)
+}
+
+.value-card:hover {
+  background: var(--brown);
+  color: var(--white);
+  transform: translateY(-3px)
+}
+
+.value-card:hover .value-index,
+.value-card:hover .value-title,
+.value-card:hover .value-copy {
+  color: var(--white)
+}
+
+.value-card:hover .value-icon {
+  transform: translateY(-8px) rotate(-2deg) scale(1.06);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .22))
+}
+
+/* Declaration block: orange-red, black type, more alive */
+.page-home #declaration {
+  background: var(--orange-red);
+  color: var(--ink)
+}
+
+.page-home .declaration-text {
+  font-size: clamp(25px, 2.55vw, 42px);
+  line-height: 1.12;
+  color: var(--ink);
+  max-width: 1120px
+}
+
+/* Posters should always be fully visible */
+.poster-card {
+  background: rgba(255, 255, 255, .22);
+  border-radius: 14px;
+  overflow: hidden
+}
+
+.poster-card img {
+  object-fit: contain;
+  background: transparent;
+  border-radius: 14px
+}
+
+/* Diagram wrapper and non-destructive text corrections */
+.diagram-art {
+  position: relative;
+  margin: 0;
+  isolation: isolate
+}
+
+.diagram-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain
+}
+
+.diagram-art .diagram-mask {
+  position: absolute;
+  z-index: 2;
+  background: #000;
+  display: block;
+  pointer-events: none
+}
+
+.diagram-mask-top {
+  left: 0;
+  top: 0;
+  width: 35%;
+  height: 13%
+}
+
+.diagram-mask-site {
+  left: 0;
+  bottom: 0;
+  width: 28%;
+  height: 7.5%
+}
+
+.diagram-updated-copy {
+  position: absolute;
+  z-index: 3;
+  left: 3.6%;
+  top: 3.3%;
+  width: 29%;
+  font-family: var(--body);
+  font-size: clamp(5px, .48vw, 9px);
+  line-height: 1.28;
+  color: #fff;
+  text-align: left;
+  pointer-events: none
+}
+
+.diagram-updated-copy strong {
+  font-weight: 700
+}
+
+.diagram-mask-principle6 {
+  left: 15.5%;
+  top: 75.3%;
+  width: 20%;
+  height: 8.5%
+}
+
+.diagram-principle6 {
+  position: absolute;
+  z-index: 3;
+  left: 18.2%;
+  top: 77%;
+  width: 18%;
+  font-family: var(--body);
+  font-size: clamp(7px, .62vw, 11px);
+  line-height: 1.2;
+  color: #32bfe9;
+  text-align: left;
+  pointer-events: none
+}
+
+.diagram-art-home .diagram-updated-copy {
+  display: none
+}
+
+.who-diagram img,
+.guideline-diagram img {
+  mix-blend-mode: normal
+}
+
+/* Guideline compact cover and TOC */
+.principles-logo-cover-inner {
+  min-height: 58svh;
+  padding: 64px 0 88px
+}
+
+.principles-logo-cover .guideline-logo {
+  max-width: 210px
+}
+
+.principles-logo-cover::after {
+  left: -6%;
+  right: -6%;
+  bottom: -145px;
+  height: 250px;
+  border: 2px solid var(--green);
+  border-color: var(--green) transparent transparent transparent;
+  border-radius: 50%;
+}
+
+.principles-toc-section {
+  padding: 12px 0 34px
+}
+
+.principles-toc-inner {
+  width: min(1120px, calc(100% - 2*var(--pad)))
+}
+
+.principles-toc-kicker {
+  font-size: 15px;
+  margin-bottom: 18px
+}
+
+.principles-toc-grid {
+  border-radius: 72px
+}
+
+.principles-toc-card {
+  min-height: 245px;
+  padding: 40px 30px 34px
+}
+
+.principles-toc-card-title {
+  font-size: var(--title-card-size);
+  margin: 4px 0 28px;
+  text-underline-offset: 6px
+}
+
+.principles-toc-card-subtitle {
+  font-size: clamp(12px, .85vw, 15px);
+  line-height: 1.38
+}
+
+.principles-toc-card-links {
+  gap: 18px
+}
+
+/* More breathing room before guideline diagram */
+.guideline-page #diagram .diagram-section .section-heading {
+  margin-bottom: 52px
+}
+
+/* Principles page is its own page: no TOC, all content visible */
+.principles-page-intro {
+  padding: 74px 0 64px
+}
+
+.principles-page-intro-inner {
+  max-width: 1080px
+}
+
+.principles-page-intro .section-heading {
+  max-width: 980px;
+  margin: 0
+}
+
+.principles-page-intro .section-title {
+  font-size: var(--title-page-size);
+  padding-top: 0
+}
+
+.extended-principles-static .extended-head-static {
+  cursor: default;
+  grid-template-columns: 44px 170px minmax(0, 1fr);
+  padding: 24px 0 18px
+}
+
+.extended-principles-static .extended-head-static strong {
+  font-size: var(--title-subsection-size);
+  padding: 54px 0 78px
+}
+
+.principles-toc-grid {
+  border-radius: 46px
+}
+
+.principles-toc-card {
+  min-height: 210px;
+  padding: 34px 24px 30px
+}
+
+.diagram-updated-copy {
+  font-size: 6px;
+  width: 31%
+}
+
+.diagram-principle6 {
+  font-size: 7px
+}
+
+.extended-principles-static .extended-head-static {
+  grid-template-columns: 34px 1fr
+}
+
+.extended-principles-static .extended-value {
+  display: none
+}
+}
+
+@media(max-width:620px) {
+
+  .hero-official-logo,
+  .hero-pt-logo {
+    width: min(390px, 82vw)
+  }
+
+  .page-home #intro {
+    padding: 44px 0
+  }
+
+  .page-home .declaration-text {
+    font-size: 24px
+  }
+
+  .principles-logo-cover .guideline-logo {
+    max-width: 180px
+  }
+
+  .principles-toc-card-title {
+    font-size: 22px
+  }
+}
+
+.guideline-page #diagram .section-title {
+  font-size: var(--title-size);
+  font-weight: var(--title-weight);
+  line-height: .98
+}
+
+/* v11 focused refinements: values interaction, clean TOC transition, diagram subtitle, glass header */
+
+/* Persistent transparent glass header across the whole site */
+.site-header {
+  background: rgba(20, 16, 18, .28);
+  -webkit-backdrop-filter: blur(18px) saturate(128%);
+  backdrop-filter: blur(18px) saturate(128%);
+  border-bottom: 1px solid rgba(255, 255, 255, .09);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .08);
+}
+
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))) {
+  .site-header {
+    background: rgba(20, 16, 18, .72)
+  }
+}
+
+@media(max-width:980px) {
+  .main-nav {
+    background: rgba(20, 16, 18, .64);
+    -webkit-backdrop-filter: blur(22px) saturate(130%);
+    backdrop-filter: blur(22px) saturate(130%);
+    border-top: 1px solid rgba(255, 255, 255, .08);
+  }
+}
+
+/* Values: alternate deep brown / deep green, with icon motion; CTA no longer flashes yellow */
+.page-home #values .value-card:nth-child(odd):hover {
+  background: #211b1d;
+  color: var(--white);
+}
+
+.page-home #values .value-card:nth-child(even):hover {
+  background: #1f5f50;
+  color: var(--white);
+}
+
+.page-home #values .value-card:hover .value-index,
+.page-home #values .value-card:hover .value-title,
+.page-home #values .value-card:hover .value-copy {
+  color: var(--white);
+}
+
+.page-home #values .value-card:hover .value-icon {
+  transform: translateY(-9px) rotate(-2deg) scale(1.075);
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .24));
+}
+
+.page-home #values .button-dark:hover {
+  background: #211b1d;
+  border-color: #211b1d;
+  color: var(--white);
+}
+
+/* Remove the decorative arc between the Guideline cover and the Table of Contents */
+.guideline-page .principles-logo-cover::after {
+  display: none;
+}
+
+/* Keep DIAGRAM visually anchored below the main title */
+.guideline-page #diagram .section-subtitle {
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin: 22px auto 0;
+  text-align: center;
+  font-size: var(--title-subtitle-size);
+  line-height: 1.15;
+  letter-spacing: .015em;
+}
+
+
+/* v13 — Guideline cover sequence + true transparent header */
+.site-header {
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border-bottom: 1px solid transparent !important;
+  box-shadow: none !important;
+  color: var(--white);
+  transition: background .28s ease, backdrop-filter .28s ease, -webkit-backdrop-filter .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+
+.site-header .brand,
+.site-header .nav-link,
+.site-header .language-link,
+.site-header .menu-toggle {
+  color: rgba(255, 255, 255, .88);
+}
+
+.site-header .nav-link.active,
+.site-header .nav-link:hover,
+.site-header .language-link:hover {
+  color: var(--green);
+}
+
+html.header-scrolled .site-header {
+  background: rgba(18, 14, 16, .38) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(132%) !important;
+  backdrop-filter: blur(20px) saturate(132%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .08) !important;
+  box-shadow: 0 9px 34px rgba(0, 0, 0, .10) !important;
+}
+
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))) {
+  html.header-scrolled .site-header {
+    background: rgba(18, 14, 16, .86) !important
+  }
+}
+
+@media(max-width:980px) {
+  .site-header.menu-open {
+    background: rgba(18, 14, 16, .50) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(132%) !important;
+    backdrop-filter: blur(20px) saturate(132%) !important;
+  }
+
+  .main-nav {
+    background: rgba(18, 14, 16, .70) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(132%);
+    backdrop-filter: blur(22px) saturate(132%);
+  }
+}
+
+/* Guideline identity: logo -> curved green line -> TOC */
+.guideline-page .principles-logo-cover {
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+.guideline-page .principles-logo-cover-inner {
+  min-height: 50svh;
+  padding: 60px 0 76px;
+}
+
+.guideline-page .principles-logo-cover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -6%;
+  width: 112%;
+  height: 205px;
+  bottom: -74px;
+  border: 0;
+  border-bottom: 2px solid var(--green);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  pointer-events: none;
+}
+
+.guideline-page .principles-toc-section {
+  padding-top: 50px;
+}
+
+/* Diagram heading: EN keeps DIAGRAM subtitle; PT artwork already contains DIAGRAMA */
+.guideline-page #diagram .diagram-section .section-heading {
+  max-width: none;
+  margin: 0 auto 50px;
+  text-align: center;
+}
+
+.guideline-page #diagram .section-title {
+  text-align: center;
+}
+
+.guideline-page #diagram .section-subtitle {
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin: 18px auto 0;
+  text-align: center;
+  font-size: var(--title-subtitle-size);
+  line-height: 1.2;
+  letter-spacing: .02em;
+}
+
+html[lang="pt-BR"] .guideline-page #diagram .section-subtitle {
+  display: none;
+}
+
+@media(max-width:980px) {
+  .guideline-page .principles-logo-cover-inner {
+    min-height: 46svh;
+    padding: 54px 0 68px
+  }
+
+  .guideline-page .principles-logo-cover::after {
+    height: 150px;
+    bottom: -54px
+  }
+
+  .guideline-page .principles-toc-section {
+    padding-top: 38px
+  }
+}
+
+@media(max-width:620px) {
+  .guideline-page .principles-logo-cover-inner {
+    min-height: 42svh;
+    padding: 48px 0 60px
+  }
+
+  .guideline-page .principles-logo-cover::after {
+    height: 115px;
+    bottom: -42px
+  }
+
+  .guideline-page .principles-toc-section {
+    padding-top: 30px
+  }
+}
+
+/* v14 — final correction: dark header at rest + editorial Guideline cover */
+.site-header {
+  background: #080808 !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .06) !important;
+  box-shadow: none !important;
+  color: var(--white) !important;
+}
+
+.site-header .brand,
+.site-header .nav-link,
+.site-header .language-link,
+.site-header .menu-toggle {
+  color: rgba(255, 255, 255, .88) !important;
+}
+
+.site-header .nav-link.active,
+.site-header .nav-link:hover,
+.site-header .language-link:hover {
+  color: var(--green) !important;
+}
+
+html.header-scrolled .site-header {
+  background: rgba(18, 14, 16, .68) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(130%) !important;
+  backdrop-filter: blur(20px) saturate(130%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .09) !important;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, .14) !important;
+}
+
+/* Guideline opening follows the supplied reference: larger identity, arc, then TOC */
+.guideline-page .principles-logo-cover {
+  position: relative;
+  overflow: hidden;
+  background: #211b1d;
+  padding: 0;
+}
+
+.guideline-page .principles-logo-cover-inner {
+  min-height: 68svh;
+  display: grid;
+  place-items: center;
+  padding: 72px 0 118px;
+}
+
+.guideline-page .principles-logo-cover .guideline-logo {
+  max-width: 390px;
+  width: min(390px, 72vw);
+  margin: 0 auto;
+}
+
+.guideline-page .principles-logo-cover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -5%;
+  width: 110%;
+  height: 255px;
+  bottom: -118px;
+  border: 0;
+  border-bottom: 2px solid var(--green);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  pointer-events: none;
+}
+
+.guideline-page .principles-toc-section {
+  padding-top: 54px;
+}
+
+@media(max-width:980px) {
+  .guideline-page .principles-logo-cover-inner {
+    min-height: 58svh;
+    padding: 64px 0 100px;
+  }
+
+  .guideline-page .principles-logo-cover .guideline-logo {
+    max-width: 330px;
+  }
+
+  .guideline-page .principles-logo-cover::after {
+    height: 190px;
+    bottom: -86px;
+  }
+
+  .guideline-page .principles-toc-section {
+    padding-top: 44px
+  }
+}
+
+@media(max-width:620px) {
+  .guideline-page .principles-logo-cover-inner {
+    min-height: 52svh;
+    padding: 56px 0 84px;
+  }
+
+  .guideline-page .principles-logo-cover .guideline-logo {
+    max-width: 270px;
+  }
+
+  .guideline-page .principles-logo-cover::after {
+    height: 145px;
+    bottom: -64px;
+  }
+
+  .guideline-page .principles-toc-section {
+    padding-top: 34px
+  }
+}
+
+/* v15 — Home Values parity + Guideline Practical Principles editorial sequence */
+
+/* Home Values table must be an exact visual copy of the Guideline Values table. */
+.page-home #values .value-card:nth-child(odd):hover,
+.page-home #values .value-card:nth-child(even):hover {
+  background: var(--brown);
+  color: var(--white);
+}
+
+.page-home #values .value-card:hover .value-index,
+.page-home #values .value-card:hover .value-title,
+.page-home #values .value-card:hover .value-copy {
+  color: var(--white);
+}
+
+.page-home #values .value-card:hover .value-icon {
+  transform: translateY(-8px) rotate(-2deg) scale(1.06);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .22));
+}
+
+/* Remove the clipped decorative line fragments. */
+.guideline-page .principles-logo-cover::after {
+  display: none !important;
+}
+
+.guideline-page .principles-toc-section {
+  padding-top: 34px;
+}
+
+/* Practical Principles — ethical guidelines / short view. */
+.guideline-page #principles {
+  background: #211b1d;
+  color: var(--white);
+  border-top: 0;
+  padding: clamp(76px, 8vw, 112px) 0 clamp(86px, 9vw, 126px);
+}
+
+.guideline-short-principles {
+  width: 100%;
+}
+
+.guideline-short-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, .62fr);
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 68px;
+}
+
+.guideline-short-title {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: var(--title-section-size);
+  line-height: .98;
+  letter-spacing: -.04em;
+  color: var(--green);
+  text-transform: uppercase;
+}
+
+.guideline-short-meta {
+  display: grid;
+  gap: 16px;
+  padding-top: 2px;
+}
+
+.guideline-short-eyebrow {
+  font-family: var(--body);
+  font-size: clamp(15px, 1.15vw, 20px);
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--green);
+}
+
+.guideline-short-label {
+  font-family: var(--body);
+  font-size: clamp(15px, 1.05vw, 19px);
+  line-height: 1.2;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.guideline-short-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(42px, 6vw, 92px);
+  row-gap: 74px;
+}
+
+.guideline-short-group {
+  min-width: 0;
+}
+
+.guideline-short-value {
+  margin: 0 0 56px;
+  font-family: var(--mono);
+  font-size: var(--title-subsection-size);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+  color: var(--green);
+  text-transform: uppercase;
+  max-width: 12ch;
+}
+
+.guideline-short-items {
+  display: grid;
+  gap: 58px;
+}
+
+.guideline-short-principle {
+  margin: 0 0 22px;
+  font-family: var(--body);
+  font-size: clamp(17px, 1.2vw, 21px);
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.guideline-short-copy {
+  margin: 0;
+  font-size: clamp(14px, .98vw, 17px);
+  line-height: 1.55;
+  color: rgba(255, 250, 240, .93);
+  max-width: 34ch;
+}
+
+/* Full-content teaser for principles 1 and 2. */
+.guideline-page #principles-teaser {
+  background: var(--cream-soft);
+  color: var(--ink);
+  padding: clamp(70px, 7vw, 104px) 0 clamp(86px, 9vw, 126px);
+  border-top: 0;
+}
+
+.principle-teasers {
+  display: grid;
+  gap: 82px;
+}
+
+.principle-teaser {
+  position: relative;
+  padding-bottom: 78px;
+  border-bottom: 1px solid rgba(8, 8, 8, .12);
+}
+
+.principle-teaser:last-of-type {
+  border-bottom: 0;
+  padding-bottom: 10px;
+}
+
+.principle-teaser-top {
+  position: relative;
+  padding-right: 150px;
+  margin-bottom: 42px;
+}
+
+.principle-teaser-value {
+  margin-bottom: 18px;
+  font-family: var(--body);
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: #32bfe9;
+  text-transform: uppercase;
+}
+
+.principle-teaser-title {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: var(--title-subsection-size);
+  line-height: 1.04;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+}
+
+.principle-teaser-icon {
+  position: absolute;
+  top: 4px;
+  right: 24px;
+  width: 86px;
+  height: 86px;
+  object-fit: contain;
+}
+
+.principle-teaser-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, .7fr) minmax(420px, 1.3fr);
+  gap: clamp(54px, 7vw, 110px);
+  align-items: start;
+}
+
+.principle-teaser-copy {
+  display: grid;
+  gap: 76px;
+}
+
+.principle-teaser-block h4,
+.principle-teaser-example-title {
+  margin: 0 0 20px;
+  font-family: var(--body);
+  font-size: clamp(16px, 1.15vw, 20px);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.principle-teaser-block p,
+.principle-teaser-example-copy {
+  margin: 0;
+  font-size: clamp(14px, 1vw, 17px);
+  line-height: 1.6;
+}
+
+.principle-teaser-example-card {
+  overflow: hidden;
+  background: #dfe0d4;
+}
+
+.principle-teaser-example-copy {
+  padding: 38px 42px 42px;
+  min-height: 205px;
+}
+
+.principle-teaser-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 430px;
+  object-fit: cover;
+}
+
+.principle-teaser-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.principle-teaser-actions .button {
+  min-width: min(360px, 90vw);
+  min-height: 66px;
+  font-size: 15px;
+}
+
+@media(max-width:980px) {
+  .guideline-short-head {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 50px
+  }
+
+  .guideline-short-meta {
+    gap: 8px
+  }
+
+  .guideline-short-grid {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 58px
+  }
+
+  .guideline-short-value {
+    margin-bottom: 34px
+  }
+
+  .guideline-short-items {
+    gap: 38px
+  }
+
+  .principle-teaser-layout {
+    grid-template-columns: 1fr;
+    gap: 42px
+  }
+
+  .principle-teaser-copy {
+    grid-template-columns: 1fr 1fr;
+    gap: 34px
+  }
+
+  .principle-teaser-icon {
+    width: 74px;
+    height: 74px;
+    right: 0
+  }
+}
+
+@media(max-width:620px) {
+  .guideline-short-grid {
+    grid-template-columns: 1fr
+  }
+
+  .guideline-short-value {
+    max-width: none
+  }
+
+  .guideline-short-copy {
+    max-width: none
+  }
+
+  .principle-teaser-top {
+    padding-right: 0;
+    padding-top: 98px
+  }
+
+  .principle-teaser-icon {
+    top: 0;
+    left: 0;
+    right: auto
+  }
+
+  .principle-teaser-copy {
+    grid-template-columns: 1fr;
+    gap: 30px
+  }
+
+  .principle-teaser-example-copy {
+    padding: 28px 24px 30px;
+    min-height: 0
+  }
+
+  .principle-teaser-actions .button {
+    min-width: 100%
+  }
+}
+
+
+/* v16 — Home Values must exactly match Guideline Values */
+.page-home #values .value-grid {
+  gap: 0;
+  border-top: 1px solid var(--line-dark);
+  border-left: 1px solid var(--line-dark);
+}
+
+.page-home #values .value-card {
+  min-height: 360px;
+  padding: 28px;
+  background: rgba(255, 255, 255, .14);
+  border-right: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.page-home #values .value-icon {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  top: auto;
+  display: block;
+  width: 136px;
+  height: 136px;
+  margin: 0 0 22px;
+  opacity: 1;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, .08));
+}
+
+.page-home #values .value-title {
+  max-width: 100%;
+  font-size: var(--title-card-size);
+  margin: 0 0 14px;
+  line-height: 1.06;
+}
+
+.page-home #values .value-copy {
+  max-width: 100%;
+  font-size: 15px;
+  line-height: 1.58;
+}
+
+.page-home #values .value-index,
+.page-home #values .value-title,
+.page-home #values .value-copy {
+  color: #0f0f0f;
+}
+
+.page-home #values .value-index {
+  opacity: .7
+}
+
+.page-home #values .value-card:hover {
+  background: var(--brown);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+.page-home #values .value-card:hover .value-index,
+.page-home #values .value-card:hover .value-title,
+.page-home #values .value-card:hover .value-copy {
+  color: var(--white);
+}
+
+.page-home #values .value-card:hover .value-icon {
+  transform: translateY(-8px) rotate(-2deg) scale(1.06);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .22));
+}
+
+@media (max-width: 900px) {
+  .page-home #values .value-card {
+    min-height: 320px
+  }
+
+  .page-home #values .value-icon {
+    width: 112px;
+    height: 112px
+  }
+}
+
+
+/* v17 — final fine-tuning */
+/* Values sections on Home + Guideline: same dark-brown language, same cards, no color-flash hover */
+.page-home #values,
+.guideline-page #values {
+  background: var(--brown);
+  color: var(--white)
+}
+
+.page-home #values .section-title,
+.guideline-page #values .section-title {
+  color: var(--white)
+}
+
+.page-home #values .values-intro,
+.guideline-page #values .values-intro {
+  color: rgba(255, 250, 240, .8)
+}
+
+.page-home #values .value-grid,
+.guideline-page #values .value-grid {
+  gap: 0;
+  border-top: 1px solid var(--line-light);
+  border-left: 1px solid var(--line-light)
+}
+
+.page-home #values .value-card,
+.guideline-page #values .value-card {
+  min-height: 360px;
+  padding: 28px;
+  background: rgba(255, 255, 255, .03);
+  border-right: 1px solid var(--line-light);
+  border-bottom: 1px solid var(--line-light);
+  color: var(--white);
+  transition: transform .34s var(--ease), box-shadow .34s var(--ease), background .34s var(--ease);
+}
+
+.page-home #values .value-index,
+.page-home #values .value-title,
+.page-home #values .value-copy,
+.guideline-page #values .value-index,
+.guideline-page #values .value-title,
+.guideline-page #values .value-copy {
+  color: var(--white)
+}
+
+.page-home #values .value-icon,
+.guideline-page #values .value-icon {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  top: auto;
+  display: block;
+  width: 136px;
+  height: 136px;
+  margin: 0 0 22px;
+  opacity: 1;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, .08));
+  transition: transform .38s var(--ease), filter .38s var(--ease);
+}
+
+.page-home #values .value-title,
+.guideline-page #values .value-title {
+  max-width: 100%;
+  font-size: var(--title-card-size);
+  margin: 0 0 14px;
+  line-height: 1.06
+}
+
+.page-home #values .value-copy,
+.guideline-page #values .value-copy {
+  max-width: 100%;
+  font-size: 15px;
+  line-height: 1.58
+}
+
+.page-home #values .value-card:hover,
+.guideline-page #values .value-card:hover {
+  background: rgba(255, 255, 255, .03) !important;
+  color: var(--white) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, .14);
+}
+
+.page-home #values .value-card:hover .value-index,
+.page-home #values .value-card:hover .value-title,
+.page-home #values .value-card:hover .value-copy,
+.guideline-page #values .value-card:hover .value-index,
+.guideline-page #values .value-card:hover .value-title,
+.guideline-page #values .value-card:hover .value-copy {
+  color: var(--white) !important
+}
+
+.page-home #values .value-card:hover .value-icon,
+.guideline-page #values .value-card:hover .value-icon {
+  transform: translateY(-8px) rotate(-2deg) scale(1.06);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .22));
+}
+
+/* Remove decorative cut lines from guideline cover and slightly reduce the logo */
+.principles-logo-cover::after {
+  display: none !important
+}
+
+.principles-logo-cover .guideline-logo {
+  max-width: 168px
+}
+
+.principles-logo-cover-inner {
+  min-height: 52svh;
+  padding: 56px 0 70px
+}
+
+/* Home declaration back to deep brown + stronger typography */
+.page-home #declaration {
+  background: var(--green) !important;
+  color: #080808 !important
+}
+
+.page-home #declaration .declaration-text {
+  color: #080808 !important;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  max-width: 1180px
+}
+
+/* Home who title in one line */
+.page-home #who .section-title {
+  white-space: nowrap;
+  max-width: none
+}
+
+/* Guideline manifesto: title + smaller subtitle */
+#manifesto .section-heading {
+  text-align: left;
+  max-width: 100%;
+  margin: 0 0 32px
+}
+
+#manifesto .section-subtitle {
+  font-family: var(--mono);
+  font-size: var(--title-subtitle-size);
+  line-height: 1.25;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-top: 10px
+}
+
+.guideline-page .manifesto-section {
+  text-align: left
+}
+
+.guideline-page .manifesto-text {
+  max-width: 1160px
+}
+
+/* Guideline resources teaser section */
+.guideline-page #resources {
+  background: var(--green);
+  color: var(--ink)
+}
+
+.guideline-page .resources-brief {
+  display: grid;
+  grid-template-columns: minmax(300px, .8fr) minmax(0, 1.2fr);
+  gap: 40px;
+  align-items: start
+}
+
+.guideline-page .resources-teaser-posters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: end
+}
+
+.guideline-page .resources-teaser-poster {
+  margin: 0;
+  background: rgba(255, 255, 255, .28);
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(8, 8, 8, .16);
+  min-height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.guideline-page .resources-teaser-poster img {
+  width: 100%;
+  max-height: 260px;
+  object-fit: contain;
+  border-radius: 8px
+}
+
+.guideline-page #resources .button-dark {
+  background: var(--brown);
+  border-color: var(--brown);
+  color: var(--white)
+}
+
+.guideline-page #resources .button-dark:hover {
+  background: #1a1115;
+  border-color: #1a1115;
+  color: var(--white)
+}
+
+/* Conclusion title: centered without max-width limit */
+.guideline-page #conclusion .section-title {
+  max-width: none !important;
+  margin-inline: auto;
+  overflow-wrap: normal;
+  word-break: normal
+}
+
+.resources-page .poster-viewport {
+  padding-top: 8px
+}
+
+.resources-page .poster-card {
+  flex-basis: min(27vw, 240px);
+  background: transparent
+}
+
+.resources-page .poster-card img {
+  max-height: 430px
+}
+
+/* Resources page title row styling */
+.resources-page #posters {
+  background: var(--green)
+}
+
+.resources-page #posters .section-title,
+.resources-page #posters .carousel-arrow {
+  color: var(--ink)
+}
+
+/* Manifesto section heading should not overpower body */
+.guideline-page #manifesto .section-title {
+  font-size: var(--title-section-size);
+  padding-bottom: 40px
+}
+
+/* Home TOC/section title tuning */
+.page-home #posters .section-title {
+  font-size: var(--title-section-size);
+  height: 112px
+}
+}
+
+@media (max-width: 700px) {
+  .page-home #who .section-title {
+    white-space: normal
+  }
+
+  .resources-page #license .section-title {
+    white-space: normal
+  }
+
+  .guideline-page .resources-teaser-posters {
+    grid-template-columns: 1fr
+  }
+}
+
+
+/* v18 — final alignment round */
+/* Guideline practical principles teaser should match extended principles page */
+.guideline-page #principles-teaser .section-heading {
+  margin: 0 0 30px
+}
+
+.guideline-page #principles-teaser .section-title {
+  font-size: var(--title-size);
+  font-weight: var(--title-weight);
+  line-height: var(--title-line);
+  letter-spacing: var(--title-tracking);
+  max-width: 16ch
+}
+
+.guideline-page #principles-teaser .extended-principles {
+  border-top: 1px solid rgba(8, 8, 8, .14)
+}
+
+.guideline-page #principles-teaser .extended-principle {
+  border-bottom: 1px solid rgba(8, 8, 8, .14)
+}
+
+.guideline-page #principles-teaser .extended-head-static strong {
+  font-size: var(--title-subsection-size);
+  column-gap: 18px;
+  align-items: end
+}
+
+.extended-principles-static .extended-head-static strong {
+  justify-self: start
+}
+
+.extended-principles-static .extended-body {
+  padding: 0 0 34px 268px
+}
+
+.extended-principles-static .extended-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, .92fr);
+  gap: 42px;
+  align-items: start
+}
+
+.extended-principles-static .extended-copy {
+  max-width: 860px
+}
+
+.extended-principles-static .extended-copy h4 {
+  margin-top: 0
+}
+
+/* Manifesto centered, with more breathing room and stronger subtitle */
+.guideline-page #manifesto .section-heading {
+  text-align: center !important;
+  margin: 0 auto 44px !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+.guideline-page #manifesto .section-title {
+  text-align: center !important;
+  margin-inline: auto !important;
+  max-width: none !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+.guideline-page #manifesto .section-subtitle {
+  font-size: var(--title-subtitle-size);
+  margin-top: 14px;
+  color: var(--green);
+  text-align: center !important;
+  margin-inline: auto !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+.guideline-page .manifesto-section {
+  text-align: center
+}
+
+.guideline-page .manifesto-text {
+  max-width: 1080px;
+  margin: auto;
+  text-align: center;
+  gap: 24px
+}
+
+/* Overview bullet list highlighted */
+.guideline-page #overview .overview-values {
+  background: rgba(255, 255, 255, .68);
+  border: 1px solid rgba(8, 8, 8, .12);
+  padding: 24px 26px;
+  border-radius: 16px
+}
+
+.guideline-page #overview .overview-values-list {
+  padding-left: 22px;
+  gap: 12px
+}
+
+/* Guideline TOC vertical centering */
+.guideline-page .principles-logo-cover-inner {
+  min-height: 50svh;
+  padding: 52px 0 54px
+}
+
+.guideline-page .principles-toc-section {
+  margin-top: -8px;
+  padding-top: 24px;
+  padding-bottom: 42px
+}
+
+/* Principle page title sizing */
+.principles-page-intro .section-heading {
+  margin: 0
+}
+
+.principles-page-intro .section-title {
+  font-size: var(--title-page-size);
+  font-weight: var(--title-weight);
+  line-height: var(--title-line);
+  letter-spacing: var(--title-tracking);
+  max-width: 19ch
+}
+
+/* Resources page poster title at standard size */
+.resources-page #posters .section-title {
+  font-size: var(--title-section-size);
+  font-weight: var(--title-weight);
+  line-height: var(--title-line);
+  letter-spacing: var(--title-tracking)
+}
+
+/* Rules & Metrics heading as main title + subtitle */
+.resources-page #rules .section-heading {
+  margin-bottom: 20px
+}
+
+.resources-page #rules .section-title {
+  font-size: var(--title-size);
+  font-weight: var(--title-weight);
+  line-height: var(--title-line);
+  letter-spacing: var(--title-tracking)
+}
+
+.resources-page #rules .section-subtitle {
+  font-family: var(--mono);
+  font-size: var(--title-subtitle-size);
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: 12px
+}
+
+/* Mobile / narrow alignment for extended bodies */
+@media(max-width:980px) {
+
+  .guideline-page #principles-teaser .extended-body,
+  .extended-principles-static .extended-body {
+    padding-left: 0
+  }
+
+  .guideline-page .principles-logo-cover-inner {
+    min-height: 48svh;
+    padding-bottom: 48px
+  }
+}
+
+
+/* v19 — requested final corrections */
+/* Extended-section title: one line on desktop, same in guideline teaser and principles page. */
+.guideline-page #principles-teaser .section-title,
+.principles-page-intro .section-title {
+  max-width: none;
+  white-space: nowrap;
+  font-size: var(--title-page-size);
+  letter-spacing: -.035em;
+}
+
+/* Both guideline teaser and full principles page use the same editorial principle layout. */
+.principles-page #extended-list .principle-teasers {
+  gap: 82px
+}
+
+.principles-page #extended-list .principle-teaser {
+  padding-bottom: 78px
+}
+
+.principles-page #extended-list .principle-teaser:last-of-type {
+  padding-bottom: 10px
+}
+
+/* Resources teaser: create clear title-to-copy separation. */
+.guideline-page .resources-brief-copy .section-heading {
+  margin: 0 0 22px
+}
+
+.guideline-page .resources-brief-copy .resources-brief-text {
+  margin-top: 0
+}
+
+@media(max-width:980px) {
+
+  .guideline-page #principles-teaser .section-title,
+  .principles-page-intro .section-title {
+    white-space: normal;
+    font-size: var(--title-page-size);
+  }
+}
+
+
+/* v20 — TOC anchors + extended-title typography normalization */
+.guideline-page #principles-teaser .section-title,
+.principles-page-intro .section-title {
+  font-size: var(--title-page-size);
+  font-weight: var(--title-weight);
+  line-height: var(--title-line);
+  letter-spacing: var(--title-tracking);
+  max-width: none;
+}
+
+@media(max-width:980px) {
+
+  .guideline-page #principles-teaser .section-title,
+  .principles-page-intro .section-title {
+    font-size: var(--title-page-size);
+  }
+}
+
+
+/* v21 — cover / TOC anchor fix + ASCII density */
+.resources-page #rules .section-title,
+.guideline-page .guideline-short-title {
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.principles-page-intro .section-title {
+  white-space: normal;
+  text-wrap: balance;
+  max-width: 22ch;
+}
+
+
+/* v22 — comprehensive responsive pass (mobile-first stabilization) */
+.menu-open-lock {
+  overflow: hidden
+}
+
+/* Prevent grid/flex children from forcing horizontal overflow. */
+.page * {
+  min-width: 0
+}
+
+.image-frame,
+.diagram-art,
+.who-diagram,
+.guideline-diagram {
+  max-width: 100%
+}
+
+.image-frame img,
+.diagram-art img,
+.who-diagram img,
+.guideline-diagram img {
+  max-width: 100%;
+  height: auto
+}
+
+@media(max-width:1024px) {
+  :root {
+    --pad: clamp(20px, 4vw, 32px)
+  }
+
+  .container,
+  .header-inner,
+  .footer-top,
+  .footer-bottom,
+  .principles-toc-inner {
+    width: calc(100% - 2*var(--pad));
+    max-width: 100%
+  }
+
+  /* Home / Guideline structural grids */
+  .page-home #who .who-grid,
+  html[lang="pt-BR"] .page-home #who .who-grid,
+  .about-grid,
+  .seed-grid,
+  .guideline-page .editorial-grid,
+  .guideline-page .resources-brief,
+  .guideline-page .conclusion-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 34px !important;
+  }
+
+  .page-home #who .who-grid {
+    min-height: 0 !important
+  }
+
+  .page-home #who .who-copy {
+    width: 100%;
+    max-width: none
+  }
+
+  .page-home #who .who-diagram {
+    width: 100% !important;
+    max-width: 760px;
+    margin: 10px auto 0;
+    justify-self: center !important
+  }
+
+  html[lang="pt-BR"] .page-home #who .who-diagram img,
+  .page-home #who .who-diagram img {
+    width: 100% !important;
+    max-width: 100% !important;
+    object-fit: contain
+  }
+
+  .guideline-page .editorial-spacer {
+    display: none
+  }
+
+  .guideline-page .final-message {
+    grid-column: auto !important
+  }
+
+  .guideline-page .resources-brief .button {
+    grid-column: auto !important
+  }
+
+  /* Value grids stay two columns on tablets, but never exceed viewport. */
+  .page-home #values .value-grid,
+  .guideline-page #values .value-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important
+  }
+
+  /* Extended principle layouts */
+  .principle-teaser-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 34px !important
+  }
+
+  .principle-teaser-copy {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px
+  }
+
+  .principle-teaser-example-card {
+    width: 100%
+  }
+
+  .principle-teaser-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover
+  }
+
+  /* Resource cards and tables */
+  .resources-page .rules-grid,
+  .resources-page .safeguards-grid {
+    grid-template-columns: 1fr !important
+  }
+
+  .resources-page .governance-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important
+  }
+
+  .comparative-table,
+  .comparative-table-scroll {
+    max-width: 100%;
+    width: 100%
+  }
+
+  .comparative-table-scroll {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-inline: contain
+  }
+}
+
+@media(max-width:900px) {
+  :root {
+    --header-h: 64px;
+    --title-size: clamp(30px, 7.5vw, 42px);
+    --pad: clamp(18px, 5vw, 26px)
+  }
+
+  .page {
+    padding-top: var(--header-h)
+  }
+
+  .section {
+    scroll-margin-top: calc(var(--header-h) + 16px)
+  }
+
+  /* Mobile navigation: full-width, readable, persistent, safe-area aware. */
+  .site-header {
+    height: var(--header-h) !important;
+    background: #080808 !important
+  }
+
+  .header-inner {
+    height: var(--header-h);
+    width: calc(100% - 2*var(--pad));
+    gap: 14px
+  }
+
+  .brand {
+    font-size: clamp(14px, 4.2vw, 17px) !important;
+    line-height: 1;
+    white-space: nowrap
+  }
+
+  .menu-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 58px;
+    min-height: 44px;
+    font-size: 11px !important;
+    line-height: 1;
+    padding: 0 !important;
+    cursor: pointer;
+    z-index: 3
+  }
+
+  .main-nav {
+    display: none !important;
+    position: fixed !important;
+    inset: var(--header-h) 0 auto 0 !important;
+    width: 100% !important;
+    max-height: calc(100svh - var(--header-h));
+    overflow-y: auto;
+    padding: 10px var(--pad) max(22px, env(safe-area-inset-bottom)) !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    background: rgba(10, 8, 9, .96) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(125%) !important;
+    backdrop-filter: blur(22px) saturate(125%) !important;
+    border-top: 1px solid rgba(255, 255, 255, .09) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .12) !important;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .28) !important;
+    z-index: 2;
+  }
+
+  .site-header.menu-open .main-nav {
+    display: flex !important
+  }
+
+  .site-header.menu-open {
+    background: rgba(8, 8, 8, .96) !important
+  }
+
+  .main-nav .nav-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 12px 0 !important;
+    font-size: 13px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    opacity: .88;
+  }
+
+  .main-nav .language-link {
+    align-self: flex-start;
+    margin-top: 14px;
+    padding: 9px 13px;
+    font-size: 11px !important;
+  }
+
+  /* Type system: no desktop nowrap or orphaning on narrow screens. */
+  .page-home .section-title,
+  .guideline-page .section-title,
+  .principles-page .section-title,
+  .resources-page .section-title,
+  .page-home #who .section-title,
+  .resources-page #license .section-title,
+  .guideline-page #principles-teaser .section-title,
+  .principles-page-intro .section-title {
+    font-size: var(--title-page-size);
+    line-height: 1.02 !important;
+    letter-spacing: -.035em !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    text-wrap: balance;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+  .section-heading {
+    max-width: 100%;
+    margin-bottom: 24px
+  }
+
+  .section-subtitle {
+    font-size: var(--title-subtitle-size);
+    line-height: 1.38;
+    margin-top: 10px
+  }
+
+  .prose,
+  .prose-large {
+    gap: 16px
+  }
+
+  .prose p,
+  .prose-large p,
+  .who-text,
+  .manifesto-text p,
+  .resources-intro,
+  .seed-text {
+    font-size: 15px !important;
+    line-height: 1.64 !important
+  }
+
+  /* Hero */
+  .ascii-stage {
+    height: calc(100svh - var(--header-h)) !important;
+    min-height: 560px !important
+  }
+
+  .hero-overlay {
+    width: calc(100% - 2*var(--pad));
+    padding: 72px 0 48px
+  }
+
+  .hero-official-logo,
+  .hero-pt-logo {
+    width: min(390px, 82vw) !important
+  }
+
+  .hero-pt-subtitle {
+    font-size: 16px;
+    margin-top: 12px
+  }
+
+  /* Home */
+  .home-intro {
+    max-width: 100%
+  }
+
+  .home-intro-text {
+    font-size: clamp(18px, 4.8vw, 23px) !important;
+    line-height: 1.46
+  }
+
+  .page-home #who .who-grid,
+  html[lang="pt-BR"] .page-home #who .who-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100%;
+    gap: 28px !important
+  }
+
+  .page-home #who .who-copy,
+  .page-home #who .section-heading,
+  .page-home #who .who-text {
+    width: 100% !important;
+    max-width: 100% !important
+  }
+
+  .page-home #who .who-diagram {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 8px 0 0 !important;
+    overflow: hidden
+  }
+
+  .page-home #who .who-diagram img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important
+  }
+
+  .page-home .declaration-text {
+    font-size: clamp(21px, 5vw, 29px) !important;
+    line-height: 1.18 !important
+  }
+
+  .about-grid,
+  .seed-grid {
+    gap: 30px !important
+  }
+
+  .seed-form {
+    width: 100%
+  }
+
+  .seed-form input,
+  .seed-form textarea {
+    max-width: 100%
+  }
+
+  /* Guideline cover + TOC */
+  .guideline-page .principles-logo-cover-inner {
+    min-height: 42svh !important;
+    padding: 42px 0 52px !important
+  }
+
+  .principles-logo-cover .guideline-logo {
+    max-width: 150px !important
+  }
+
+  .guideline-page .principles-toc-section {
+    padding: 22px 0 38px !important;
+    margin-top: 0 !important
+  }
+
+  .principles-toc-kicker {
+    font-size: 14px;
+    margin-bottom: 18px
+  }
+
+  .principles-toc-grid {
+    grid-template-columns: 1fr !important;
+    border-radius: 30px !important;
+    gap: 1px
+  }
+
+  .principles-toc-card {
+    min-height: 0 !important;
+    padding: 30px 24px !important
+  }
+
+  .principles-toc-card-title {
+    font-size: var(--title-card-size) !important;
+    margin: 0 0 22px !important;
+    line-height: 1.12
+  }
+
+  .principles-toc-card-links {
+    gap: 12px !important
+  }
+
+  .principles-toc-card-subtitle {
+    font-size: 12px !important;
+    line-height: 1.4
+  }
+
+  /* Guideline reading sections */
+  .guideline-page .editorial-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 24px !important
+  }
+
+  .guideline-page #overview .overview-values {
+    padding: 20px;
+    border-radius: 14px
+  }
+
+  .guideline-page #overview .overview-values-list {
+    padding-left: 18px;
+    gap: 10px
+  }
+
+  .guideline-page #overview .overview-values-list li {
+    font-size: 14px;
+    line-height: 1.55
+  }
+
+  .guideline-page #who .inline-declaration {
+    font-size: clamp(17px, 4.5vw, 23px);
+    margin-top: 26px;
+    padding: 18px 20px;
+    border-radius: 20px
+  }
+
+  .guideline-page #diagram .diagram-section .section-heading {
+    margin-bottom: 30px !important
+  }
+
+  .guideline-page .guideline-diagram {
+    width: 100%;
+    overflow: hidden
+  }
+
+  .guideline-page .guideline-diagram img {
+    width: 100% !important;
+    height: auto;
+    max-height: none !important
+  }
+
+  .diagram-updated-copy {
+    font-size: 5px !important
+  }
+
+  .diagram-principle6 {
+    font-size: 6px !important
+  }
+
+  /* Guideline practical principles short view */
+  .guideline-short-head {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    margin-bottom: 42px !important
+  }
+
+  .guideline-short-title {
+    font-size: var(--title-size) !important;
+    white-space: normal !important;
+    line-height: 1.02 !important
+  }
+
+  .guideline-short-meta {
+    align-items: flex-start
+  }
+
+  .guideline-short-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 46px 26px !important
+  }
+
+  .guideline-short-value {
+    font-size: var(--title-subsection-size);
+    margin-bottom: 26px
+  }
+
+  .guideline-short-principle {
+    font-size: 17px
+  }
+
+  .guideline-short-copy {
+    font-size: 14px;
+    line-height: 1.55
+  }
+
+  /* Full/teaser principle editorials */
+  .principles-page-intro {
+    padding: 54px 0 42px !important
+  }
+
+  .principle-teasers {
+    gap: 54px !important
+  }
+
+  .principle-teaser {
+    padding-bottom: 48px !important
+  }
+
+  .principle-teaser-top {
+    padding-right: 90px
+  }
+
+  .principle-teaser-title {
+    font-size: var(--title-subsection-size) !important;
+    line-height: 1.08 !important;
+    overflow-wrap: normal;
+    word-break: normal
+  }
+
+  .principle-teaser-value {
+    font-size: 11px
+  }
+
+  .principle-teaser-icon {
+    width: 68px !important;
+    height: 68px !important
+  }
+
+  .principle-teaser-layout {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important
+  }
+
+  .principle-teaser-copy {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px
+  }
+
+  .principle-teaser-block p,
+  .principle-teaser-example-copy {
+    font-size: 14px;
+    line-height: 1.6
+  }
+
+  .principle-teaser-example-copy {
+    padding: 24px;
+    min-height: 0
+  }
+
+  .principle-teaser-image {
+    max-height: none !important;
+    object-fit: cover
+  }
+
+  .principle-teaser-actions .button {
+    width: 100%;
+    min-width: 0 !important;
+    min-height: 56px;
+    font-size: 12px
+  }
+
+  /* Guideline resources teaser */
+  .guideline-page .resources-brief {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important
+  }
+
+  .guideline-page .resources-teaser-posters {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px
+  }
+
+  .guideline-page .resources-teaser-poster {
+    min-height: 0;
+    padding: 7px
+  }
+
+  .guideline-page .resources-teaser-poster img {
+    max-height: 220px
+  }
+
+  /* Conclusion and about */
+  .guideline-page .conclusion-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important
+  }
+
+  .guideline-page .final-message {
+    grid-column: auto !important;
+    margin-top: 0
+  }
+
+  .guideline-page .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important
+  }
+
+  /* Resources page */
+  .resources-page #resources-top {
+    padding: 46px 0 32px !important
+  }
+
+  .resources-page #resources-top .resources-hero {
+    min-height: 0 !important
+  }
+
+  .resources-toc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 18px
+  }
+
+  .resources-toc a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 10px;
+    line-height: 1.3
+  }
+
+  .resources-page #posters .poster-card {
+    flex-basis: min(60vw, 240px) !important
+  }
+
+  .resources-page .rules-grid,
+  .resources-page .safeguards-grid {
+    grid-template-columns: 1fr !important
+  }
+
+  .resources-page .governance-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important
+  }
+
+  .license-card {
+    padding: 22px !important
+  }
+
+  .license-text {
+    font-size: 18px;
+    line-height: 1.5
+  }
+
+  /* Footer */
+  .footer-top,
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 22px;
+    padding: 26px 0
+  }
+
+  .footer-copy {
+    font-size: 10px;
+    max-width: 100%
+  }
+
+  .footer-logos {
+    flex-wrap: wrap
+  }
+
+  .partner-logo {
+    max-width: 120px;
+    max-height: 40px
+  }
+}
+
+@media(max-width:620px) {
+  :root {
+    --pad: 18px;
+    --title-size: clamp(28px, 8.8vw, 36px)
+  }
+
+  .section {
+    padding: 52px 0 !important
+  }
+
+  .page-home #values .value-grid,
+  .guideline-page #values .value-grid {
+    grid-template-columns: 1fr !important
+  }
+
+  .page-home #values .value-card,
+  .guideline-page #values .value-card {
+    min-height: 0 !important;
+    padding: 22px !important
+  }
+
+  .page-home #values .value-icon,
+  .guideline-page #values .value-icon {
+    width: 88px !important;
+    height: 88px !important;
+    margin-bottom: 18px !important
+  }
+
+  .page-home #values .value-title,
+  .guideline-page #values .value-title {
+    font-size: 23px !important;
+    line-height: 1.08 !important
+  }
+
+  .page-home #values .value-copy,
+  .guideline-page #values .value-copy {
+    font-size: 14px !important;
+    line-height: 1.55 !important
+  }
+
+  .poster-carousel {
+    display: block !important
+  }
+
+  .poster-viewport {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto
+  }
+
+  .poster-card {
+    flex-basis: min(76vw, 280px) !important
+  }
+
+  .guideline-short-grid {
+    grid-template-columns: 1fr !important;
+    gap: 42px !important
+  }
+
+  .guideline-short-group {
+    width: 100%
+  }
+
+  .guideline-short-value {
+    max-width: 100% !important
+  }
+
+  .principle-teaser-top {
+    padding: 82px 0 0 !important
+  }
+
+  .principle-teaser-icon {
+    top: 0 !important;
+    left: 0 !important;
+    right: auto !important;
+    width: 62px !important;
+    height: 62px !important
+  }
+
+  .principle-teaser-copy {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important
+  }
+
+  .principle-teaser-example-copy {
+    padding: 20px !important
+  }
+
+  .guideline-page .resources-teaser-posters {
+    grid-template-columns: 1fr !important
+  }
+
+  .guideline-page .resources-teaser-poster {
+    max-width: 300px;
+    width: 100%;
+    justify-self: start
+  }
+
+  .resources-toc {
+    grid-template-columns: 1fr
+  }
+
+  .resources-page .governance-grid {
+    grid-template-columns: 1fr !important
+  }
+
+  .comparative-table-element {
+    min-width: 720px !important
+  }
+}
+
+@media(max-width:420px) {
+  :root {
+    --pad: 16px;
+    --title-size: clamp(27px, 8.5vw, 34px)
+  }
+
+  .brand {
+    font-size: 14px !important
+  }
+
+  .menu-toggle {
+    font-size: 10px !important;
+    min-width: 48px
+  }
+
+  .home-intro-text {
+    font-size: 18px !important
+  }
+
+  .page-home .declaration-text {
+    font-size: 21px !important
+  }
+
+  .principles-toc-card {
+    padding: 26px 18px !important
+  }
+
+  .principles-toc-card-title {
+    font-size: 22px !important
+  }
+
+  .guideline-page #overview .overview-values {
+    padding: 18px
+  }
+
+  .resources-page #posters .poster-card {
+    flex-basis: 72vw !important
+  }
+
+  .footer-contact {
+    gap: 8px !important
+  }
+}
+
+@media(max-width:350px) {
+  :root {
+    --pad: 14px;
+    --title-size: 28px
+  }
+
+  .brand {
+    font-size: 13px !important
+  }
+
+  .menu-toggle {
+    font-size: 9px !important
+  }
+
+  .section {
+    padding: 46px 0 !important
+  }
+
+  .principle-teaser-title {
+    font-size: 23px !important
+  }
+
+  .main-nav .nav-link {
+    font-size: 12px !important
+  }
+}
+
+/* v22.1 — responsive audit corrections */
+@media(max-width:900px) {
+  .main-nav .nav-link {
+    color: rgba(255, 255, 255, .94) !important;
+    opacity: 1 !important
+  }
+
+  .main-nav .nav-link.active {
+    color: var(--green) !important
+  }
+
+  .main-nav .language-link {
+    color: var(--white) !important
+  }
+
+  .guideline-short-grid {
+    grid-template-columns: 1fr !important
+  }
+
+  .guideline-short-value {
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: normal;
+    word-break: normal
+  }
+}
+
+
+/* v24 — canonical semantic title system */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important
+}
+
+.title-page,
+.title-section,
+.title-subsection,
+.title-card,
+.title-detail {
+  font-family: var(--mono) !important;
+  text-wrap: balance;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.title-page {
+  font-size: var(--title-page-size) !important;
+  font-weight: var(--title-page-weight) !important;
+  line-height: var(--title-page-line) !important;
+  letter-spacing: var(--title-page-tracking) !important
+}
+
+.title-section {
+  font-size: var(--title-section-size) !important;
+  font-weight: var(--title-section-weight) !important;
+  line-height: var(--title-section-line) !important;
+  letter-spacing: var(--title-section-tracking) !important
+}
+
+.title-subsection {
+  font-size: var(--title-subsection-size) !important;
+  font-weight: var(--title-subsection-weight) !important;
+  line-height: var(--title-subsection-line) !important;
+  letter-spacing: var(--title-subsection-tracking) !important
+}
+
+.title-card {
+  font-size: var(--title-card-size) !important;
+  font-weight: var(--title-card-weight) !important;
+  line-height: var(--title-card-line) !important;
+  letter-spacing: var(--title-card-tracking) !important
+}
+
+.title-detail {
+  font-size: var(--title-detail-size) !important;
+  font-weight: var(--title-detail-weight) !important;
+  line-height: var(--title-detail-line) !important;
+  letter-spacing: var(--title-detail-tracking) !important;
+  text-transform: uppercase
+}
+
+.heading-page .section-title {
+  font-size: var(--title-page-size) !important;
+  font-weight: var(--title-page-weight) !important;
+  line-height: var(--title-page-line) !important;
+  letter-spacing: var(--title-page-tracking) !important
+}
+
+.heading-section .section-title {
+  font-size: var(--title-section-size) !important;
+  font-weight: var(--title-section-weight) !important;
+  line-height: var(--title-section-line) !important;
+  letter-spacing: var(--title-section-tracking) !important
+}
+
+.heading-subsection .section-title {
+  font-size: var(--title-subsection-size) !important;
+  font-weight: var(--title-subsection-weight) !important;
+  line-height: var(--title-subsection-line) !important;
+  letter-spacing: var(--title-subsection-tracking) !important
+}
+
+.heading-detail .section-title {
+  font-size: var(--title-detail-size) !important;
+  font-weight: var(--title-detail-weight) !important;
+  line-height: var(--title-detail-line) !important;
+  letter-spacing: var(--title-detail-tracking) !important
+}
+
+.section-subtitle {
+  font-size: var(--title-subtitle-size) !important
+}
+
+/* Principles page / teaser: title + subtitle rather than one oversized compound heading. */
+.principles-page-intro-inner,
+.guideline-page #principles-teaser .container {
+  display: block
+}
+
+.principles-page-intro .section-heading,
+.guideline-page #principles-teaser .section-heading {
+  max-width: 100%;
+  margin: 0 0 38px;
+  text-align: left
+}
+
+.principles-page-intro .section-title,
+.guideline-page #principles-teaser .section-title {
+  max-width: none !important;
+  white-space: normal !important
+}
+
+.principles-page-intro .section-subtitle,
+.guideline-page #principles-teaser .section-subtitle {
+  max-width: 100%;
+  margin-top: 12px
+}
+
+.guideline-page .conclusion-grid {
+  grid-template-columns: 1fr;
+  gap: 48px;
+  text-align: center;
+}
+
+.guideline-page .conclusion-grid {
+  grid-template-columns: 1fr;
+  gap: 40px;
+  text-align: left;
+}
+
+.guideline-page #conclusion .section-heading {
+  grid-row: auto;
+  margin: 0 0 16px;
+  text-align: left;
+}
+
+.guideline-page #conclusion .section-title {
+  max-width: none !important;
+  margin-inline: 0;
+  text-align: left;
+}
+
+.guideline-page .conclusion-expected {
+  grid-column: 1;
+  max-width: 1080px;
+  margin: 0;
+  text-align: left;
+}
+
+.guideline-page .conclusion-subtitle {
+  margin: 0 0 18px;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.guideline-page .final-message {
+  grid-column: 1;
+  max-width: 1080px;
+  margin: 24px 0 0;
+  text-align: left;
+}
+
+.guideline-page .conclusion-block p {
+  text-align: left;
+}
+
+/* Comparative table title now follows the same H2 token as every other section. */
+.principles-page #comparative .section-title {
+  font-size: var(--title-section-size) !important;
+  font-weight: var(--title-section-weight) !important;
+  line-height: var(--title-section-line) !important;
+  letter-spacing: var(--title-section-tracking) !important;
+  max-width: 18ch
+}
+
+.principles-page #comparative {
+  padding-bottom: 46px
+}
+
+.principles-page #comparative .comparative-table {
+  margin-bottom: 0
+}
+
+/* Individual principles are H3; internal labels are H4. */
+.principle-teaser-title,
+.extended-title {
+  font-size: var(--title-subsection-size) !important;
+  font-weight: var(--title-subsection-weight) !important;
+  line-height: var(--title-subsection-line) !important;
+  letter-spacing: var(--title-subsection-tracking) !important
+}
+
+.principle-teaser-block h4,
+.principle-teaser-example-title,
+.extended-copy h4 {
+  font-size: var(--title-detail-size) !important;
+  font-weight: var(--title-detail-weight) !important;
+  line-height: var(--title-detail-line) !important;
+  letter-spacing: var(--title-detail-tracking) !important
+}
+
+/* Keep the page-heading alignment on the same editorial axis as its content. */
+.principles-page-intro-inner {
+  width: min(1120px, calc(100% - 2*var(--pad)));
+  margin-inline: auto
+}
+
+@media(max-width:700px) {
+  :root {
+    --title-page-size: clamp(34px, 10vw, 46px);
+    --title-section-size: clamp(29px, 8vw, 38px);
+    --title-subsection-size: clamp(22px, 6vw, 29px);
+    --title-card-size: clamp(18px, 5vw, 22px);
+    --title-subtitle-size: clamp(14px, 4vw, 17px);
+  }
+
+  .guideline-page .conclusion-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important
+  }
+
+  .guideline-page #conclusion .section-heading {
+    grid-row: auto
+  }
+
+  .conclusion-expected,
+  .final-message {
+    grid-column: 1
+  }
+
+  .principles-page #comparative .section-title {
+    max-width: none
+  }
+}

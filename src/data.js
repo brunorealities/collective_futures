@@ -59,10 +59,10 @@ export const UI = {
 };
 
 export function langFromPath(path = window.location.pathname){
-  // Portuguese is the primary language at root. English lives under /en.
-  // /pt is kept as a compatibility alias for older links.
-  if(path === '/en' || path.startsWith('/en/')) return 'en';
-  return 'pt';
+  // English is the primary language at root; /en remains a compatibility alias.
+  // Portuguese lives under /pt.
+  if(path === '/pt' || path.startsWith('/pt/')) return 'pt';
+  return 'en';
 }
 
 export function basePath(path = window.location.pathname){
@@ -76,7 +76,7 @@ export function basePath(path = window.location.pathname){
 
 export function localizePath(path, lang = langFromPath()){
   const clean = path === '/' ? '/' : `/${path.replace(/^\/+|\/+$/g,'')}`;
-  if(lang === 'en') return clean === '/' ? '/en' : `/en${clean}`;
+  if(lang === 'pt') return clean === '/' ? '/pt' : `/pt${clean}`;
   return clean;
 }
 

@@ -28,7 +28,7 @@ export const UI = {
     rulesMetrics: 'PRACTICAL PRINCIPLES - RULES & METRICS', safeguards: 'ADDITIONAL SAFEGUARDS',
     governanceKit: 'SUGGESTED GOVERNANCE KIT', license: 'SHORT LICENSE DRAFT FOR COMMUNITY DATA',
     search: 'Search rules, metrics, verification…',
-    footer: 'COLLECTIVE FUTURES: A Guideline of Ethical AI for Communities. [2026]<br>A RITO project, inspired by exploratory interviews conducted by <a href="https://unearthodox.org/" target="_blank" rel="noreferrer" class="unearthodox-credit">Unearthodox<img src="/assets/Unearthodox_Primary_Light_RGB.png" alt="" class="unearthodox-credit-logo"></a>, licensed under CC BY-NC 4.0.'
+    footer: 'COLLECTIVE FUTURES: A Guideline of Ethical AI for Communities. [2026]<br>A RITO project, inspired by exploratory interviews conducted by <a href="https://unearthodox.org/" target="_blank" rel="noreferrer" class="unearthodox-credit"><img src="/assets/Unearthodox_Primary_Light_RGB.png" alt="Unearthodox" class="unearthodox-credit-logo"></a>, licensed under CC BY-NC 4.0.'
   },
   pt: {
     brand: 'COLLECTIVE FUTURES',
@@ -54,7 +54,7 @@ export const UI = {
     rulesMetrics: 'PRINCÍPIOS PRÁTICOS - REGRAS & MÉTRICAS', safeguards: 'SALVAGUARDAS ADICIONAIS',
     governanceKit: 'KIT DE GOVERNANÇA SUGERIDO', license: 'MINUTA CURTA DE LICENÇA PARA DADOS COMUNITÁRIOS',
     search: 'Buscar regras, métricas, verificações…',
-    footer: 'COLLECTIVE FUTURES: Um Guia de IA Ética para Comunidades. [2026]<br>Um projeto da RITO, inspirado em entrevistas exploratórias conduzidas pela <a href="https://unearthodox.org/" target="_blank" rel="noreferrer" class="unearthodox-credit">Unearthodox<img src="/assets/Unearthodox_Primary_Light_RGB.png" alt="" class="unearthodox-credit-logo"></a>, licenciado sob CC BY-NC 4.0.'
+    footer: 'COLLECTIVE FUTURES: Um Guia de IA Ética para Comunidades. [2026]<br>Um projeto da RITO, inspirado em entrevistas exploratórias conduzidas pela <a href="https://unearthodox.org/" target="_blank" rel="noreferrer" class="unearthodox-credit"><img src="/assets/Unearthodox_Primary_Light_RGB.png" alt="Unearthodox" class="unearthodox-credit-logo"></a>, licenciado sob CC BY-NC 4.0.'
   }
 };
 
